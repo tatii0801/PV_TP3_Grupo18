@@ -1,16 +1,105 @@
-# React + Vite
+# PV_TP3_Grupo18
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Trabajo Practico N° 3 - React Parte 1
 
-Currently, two official plugins are available:
+### React - Componentes - Hooks - Servicios
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Integrantes con sus usuarios de GitHub
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* Agustin Pablo Portillo DNI: 38976086 LU: APU006548 Usuario GitHub: PortilloAgustin95
 
-## Expanding the ESLint configuration
+* Josias Daniel Rodriguez DNI: 42748497 LU: 6682 Usuario GitHub: 42748497
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* Moises Antonio Israel Flores Navajas DNI: 38973565 LU: 5307 Usuario GitHub: MoisesFloresNavajas
+
+* Tatiana Valeria Nieva DNI: 43139597 LU: 3866 Usuario GitHub: tatii0801
+
+* Yesarela Febe Manuelita Flores Navajas DNI: 41041662 LU: 6000 Usuario GitHub: YesarelaFloresNavajas
+
+---
+
+## Estructura del Proyecto
+
+* `src/components/`
+  Contiene los componentes reutilizables de React:
+
+  * Header.jsx
+  * Nav.jsx
+  * Footer.jsx
+  * ListaProyectos.jsx
+
+* `src/services/`
+  Contiene la logica del proyecto:
+
+  * proyectoService.js
+
+* `src/css/`
+  Contiene los archivos de estilos CSS del proyecto.
+
+* `src/App.jsx`
+  Componente principal de la aplicacion.
+
+* `src/main.jsx`
+  Punto de entrada principal de React.
+
+---
+
+## Tecnologias Utilizadas
+
+* React
+* Vite
+* JavaScript
+* JSX
+* CSS
+* Node.js
+* npm
+* Git
+* GitHub
+
+---
+
+## Comandos Utilizados
+
+Crear proyecto con Vite:
+* npm create vite@latest
+
+
+Instalar dependencias:
+* npm install
+
+Ejecutar proyecto:
+* npm run dev
+
+
+---
+
+## Objetivo del Trabajo
+
+Aplicar conceptos iniciales de React mediante el desarrollo de una aplicacion web interactiva utilizando componentes, hooks y modulos de JavaScript, siguiendo buenas practicas de organizacion y reutilizacion de codigo.
+
+---
+
+## Descripcion
+
+En este trabajo practico se realizo la migracion de una plataforma web desarrollada previamente en HTML y CSS hacia React utilizando Vite.
+
+El proyecto consiste en una aplicacion de Gestion de Proyectos Educativos, aplicando conceptos fundamentales de React como:
+
+* Componentes funcionales
+* JSX
+* Hooks (`useState`)
+* Modularizacion
+* Manipulacion dinamica de datos
+* Renderizado de listas con `.map()`
+* Eventos en React
+* Importacion y exportacion de modulos
+* Separacion de logica y vista
+
+La aplicacion permite:
+
+* Visualizar proyectos
+* Buscar proyectos en tiempo real
+* Eliminar proyectos
+* Gestionar informacion mediante un modulo de servicios
