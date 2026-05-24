@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { obtenerProyectos, eliminarProyecto, buscarProyecto } from "../services/proyectoService";
+
+import {obtenerProyectos, agregarProyecto, eliminarProyecto, buscarProyecto } from "../services/proyectoService";
 
 const ListaProyectos = () => {
 
@@ -7,26 +8,49 @@ const ListaProyectos = () => {
         obtenerProyectos()
     );
 
+    const [titulo, setTitulo] = useState("");
+    const [categoria, setCategoria] = useState("");
+    const [estado, setEstado] = useState("");
+
+    const agregar = () => {
+
+        const nuevoProyecto = {
+            
+            id: proyectos[proyectos.length - 1].id + 1,
+            titulo: titulo,
+            categoria: categoria,
+            estado: estado
+        };
+
+        agregarProyecto(nuevoProyecto);
+
+        setProyectos(
+            obtenerProyectos()
+        );
+
+        setTitulo("");
+        setCategoria("");
+        setEstado("");
+    };
+
     const eliminar = (id) => {
 
         eliminarProyecto(id);
 
-        setProyectos(proyectos => proyectos.filter(proyectos => proyectos.id !== id));
+        setProyectos( proyectos.filter( proyecto => proyecto.id !== id ));
     };
 
-    const buscar = (e) => {
+    const buscar = (encontrar) => {
 
-        const texto = e.target.value;
+        const texto = encontrar.target.value;
 
-        if (texto === " ") {
+        if (texto === "") {
 
             setProyectos( obtenerProyectos() );
 
         } else {
 
-            setProyectos(
-                buscarProyecto(texto)
-            );
+            setProyectos( buscarProyecto(texto) );
         }
     };
 
@@ -41,11 +65,54 @@ const ListaProyectos = () => {
                 onChange={buscar}
             />
 
+            <hr />
+
+            <h2>Agregar Proyecto</h2>
+
+            <input
+                type="text"
+                placeholder="Titulo"
+                value={titulo}
+                onChange={(encontrar) =>
+                    setTitulo(encontrar.target.value)
+                }
+            />
+
+            <input
+                type="text"
+                placeholder="Categoria"
+                value={categoria}
+                onChange={(encontrar) =>
+                    setCategoria(encontrar.target.value)
+                }
+            />
+
+            <input
+                type="text"
+                placeholder="Estado"
+                value={estado}
+                onChange={(encontrar) =>
+                    setEstado(encontrar.target.value)
+                }
+            />
+
+            <button onClick={agregar}>
+                Agregar
+            </button>
+
+            <hr />
+
             {
                 proyectos.map((proyecto) => (
+                    <div
+                        key={proyecto.id}
+                        style={{ marginBottom: "20px" }}
+                        >
 
-                    <div key={proyecto.id}>
-
+                        <h2>
+                            ID: {proyecto.id}
+                        </h2>
+                    
                         <h2>{proyecto.titulo}</h2>
 
                         <p>
