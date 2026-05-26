@@ -54,10 +54,16 @@ const ListaProyectos = () => {
         }
     };
 
-    return (
-        <main>
+return (
+    <main className="contenedor">
 
-            <h1>Lista de Proyectos</h1>
+   
+        <div className="centrado">
+            <h2 id="titulo-proyecto"><strong>Lista de Proyectos</strong></h2>
+        </div>
+
+
+        <div className="margen">
 
             <input
                 type="text"
@@ -65,62 +71,82 @@ const ListaProyectos = () => {
                 onChange={buscar}
             />
 
-            <hr />
+        </div>
 
-            <h2>Agregar Proyecto</h2>
+        <hr />
 
-            <input
-                type="text"
-                placeholder="Titulo"
-                value={titulo}
-                onChange={(encontrar) =>
-                    setTitulo(encontrar.target.value)
-                }
-            />
+        <section className="margen">
 
-            <input
-                type="text"
-                placeholder="Categoria"
-                value={categoria}
-                onChange={(encontrar) =>
-                    setCategoria(encontrar.target.value)
-                }
-            />
+            <h3>Agregar Proyecto</h3>
 
-            <input
-                type="text"
-                placeholder="Estado"
-                value={estado}
-                onChange={(encontrar) =>
-                    setEstado(encontrar.target.value)
-                }
-            />
+            <div className="formulario-proyecto">
 
-            <button onClick={agregar}>
-                Agregar
-            </button>
+                <input
+                    type="text"
+                    placeholder="Titulo"
+                    value={titulo}
+                    onChange={(encontrar) =>
+                        setTitulo(encontrar.target.value)
+                    }
+                />
 
-            <hr />
+                <input
+                    type="text"
+                    placeholder="Categoria"
+                    value={categoria}
+                    onChange={(encontrar) =>
+                        setCategoria(encontrar.target.value)
+                    }
+                />
+
+                <input
+                    type="text"
+                    placeholder="Estado"
+                    value={estado}
+                    onChange={(encontrar) =>
+                        setEstado(encontrar.target.value)
+                    }
+                />
+
+                <button onClick={agregar}>
+                    Agregar
+                </button>
+
+            </div>
+
+        </section>
+
+        <hr />
+
+ 
+        <section className="contenedor-proyectos">
 
             {
                 proyectos.map((proyecto) => (
-                    <div
+
+                    <article
+                        className="proyecto"
                         key={proyecto.id}
-                        style={{ marginBottom: "20px" }}
-                        >
+                    >
 
                         <h2>
                             ID: {proyecto.id}
                         </h2>
-                    
-                        <h2>{proyecto.titulo}</h2>
+
+                        <h3>
+                            {proyecto.titulo}
+                        </h3>
 
                         <p>
-                            Categoria: {proyecto.categoria}
+                            <strong>Categoria:</strong>
+                            {' '}
+                            {proyecto.categoria}
                         </p>
 
                         <p>
-                            Estado: {proyecto.estado}
+                            <strong>Estado:</strong>
+                            {' '}
+                            {proyecto.estado}
                         </p>
 
                         <button
@@ -131,12 +157,15 @@ const ListaProyectos = () => {
                             Eliminar
                         </button>
 
-                    </div>
+                    </article>
+
                 ))
             }
 
-        </main>
-    );
+        </section>
+
+    </main>
+);
 };
 
 export default ListaProyectos;
