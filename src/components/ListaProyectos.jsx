@@ -129,13 +129,13 @@ return (
                         key={proyecto.id}
                     >
 
-                        <h2>
-                            ID: {proyecto.id}
-                        </h2>
-
                         <h3>
-                            {proyecto.titulo}
+                            ID: {proyecto.id}
                         </h3>
+
+                        <h4>
+                            {proyecto.titulo}
+                        </h4>
 
                         <p>
                             <strong>Categoria:</strong>
