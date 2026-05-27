@@ -1,12 +1,12 @@
 import ListaProyectos from "./components/ListaProyectos";
 import Footer from "./components/Footer";
-// import Header from "./components/Header";
+import Header from "./components/Header";
 
 function App() {
 
     return (
         <>
-            {/* <Header/> */}
+            <Header/>
             <ListaProyectos />
             <Footer/>
         </>
