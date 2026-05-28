@@ -99,14 +99,32 @@ return (
                     }
                 />
 
-                <input
-                    type="text"
-                    placeholder="Estado"
+                <select
                     value={estado}
                     onChange={(encontrar) =>
-                        setEstado(encontrar.target.value)
+                        setEstado(
+                            encontrar.target.value
+                        )
                     }
-                />
+                >
+
+                    <option value="">
+                        Seleccione un estado
+                    </option>
+
+                    <option value="Pendiente">
+                        Pendiente
+                    </option>
+
+                    <option value="En curso">
+                        En curso
+                    </option>
+
+                    <option value="Finalizado">
+                        Finalizado
+                    </option>
+
+                </select>
 
                 <button onClick={agregar}>
                     Agregar

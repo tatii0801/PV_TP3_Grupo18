@@ -124,3 +124,21 @@ footer {
   margin: 0;
  
 }
+
+select {
+
+  padding: 10px;
+
+  margin: 5px;
+
+  border-radius: 5px;
+
+  border: 1px solid var(--color-borde);
+}
+
+select:focus {
+
+  outline: none;
+
+  border-color: var(--color-secundario);
+}
