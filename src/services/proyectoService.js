@@ -31,9 +31,22 @@ const proyectos = [
     }
 ];
 
-export const obtenerProyectos = () => proyectos;
+export const obtenerProyectos = () => [...proyectos];
 
 export const agregarProyecto = (nuevoProyecto) => {
+
+    if (
+        nuevoProyecto.titulo === "" ||
+        nuevoProyecto.categoria === "" ||
+        nuevoProyecto.estado === ""
+    ) {
+
+        alert(
+            "Complete todos los campos"
+        );
+
+        return;
+    }
 
     console.log(
         `Se agrego el proyecto ${nuevoProyecto.titulo}`
