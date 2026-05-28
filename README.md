@@ -10,8 +10,6 @@
 
 * Agustin Pablo Portillo DNI: 38976086 LU: APU006548 Usuario GitHub: PortilloAgustin95
 
-* Josias Daniel Rodriguez DNI: 42748497 LU: 6682 Usuario GitHub: 42748497
-
 * Moises Antonio Israel Flores Navajas DNI: 38973565 LU: 5307 Usuario GitHub: MoisesFloresNavajas
 
 * Tatiana Valeria Nieva DNI: 43139597 LU: 3866 Usuario GitHub: tatii0801
