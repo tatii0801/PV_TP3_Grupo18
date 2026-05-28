@@ -1,8 +1,8 @@
 # PV_TP3_Grupo18
 
-## Trabajo Practico N° 3 - React Parte 1
+## Trabajo Practico N° 3 - React Parte 1 y Parte 2
 
-### React - Componentes - Hooks - Servicios
+### React - Componentes - Hooks - Props - Servicios
 
 ---
 
@@ -29,6 +29,8 @@
   * Nav.jsx
   * Footer.jsx
   * ListaProyectos.jsx
+  * ProyectoCard.jsx
+  * DetalleProyecto.jsx
 
 * `src/services/`
   Contiene la logica del proyecto:
@@ -63,21 +65,22 @@
 ## Comandos Utilizados
 
 Crear proyecto con Vite:
+
 * npm create vite@latest
 
-
 Instalar dependencias:
+
 * npm install
 
 Ejecutar proyecto:
-* npm run dev
 
+* npm run dev
 
 ---
 
 ## Objetivo del Trabajo
 
-Aplicar conceptos iniciales de React mediante el desarrollo de una aplicacion web interactiva utilizando componentes, hooks y modulos de JavaScript, siguiendo buenas practicas de organizacion y reutilizacion de codigo.
+Aplicar conceptos fundamentales de React mediante el desarrollo de una aplicacion web interactiva utilizando componentes, props, hooks y modulos de JavaScript, siguiendo buenas practicas de organizacion, reutilizacion y separacion de responsabilidades.
 
 ---
 
@@ -89,17 +92,42 @@ El proyecto consiste en una aplicacion de Gestion de Proyectos Educativos, aplic
 
 * Componentes funcionales
 * JSX
+* Props
 * Hooks (`useState`)
 * Modularizacion
 * Manipulacion dinamica de datos
 * Renderizado de listas con `.map()`
 * Eventos en React
 * Importacion y exportacion de modulos
+* Desestructuracion de objetos
 * Separacion de logica y vista
 
 La aplicacion permite:
 
 * Visualizar proyectos
 * Buscar proyectos en tiempo real
+* Agregar proyectos
 * Eliminar proyectos
+* Ver detalles de cada proyecto
+* Mostrar informacion extendida
 * Gestionar informacion mediante un modulo de servicios
+
+---
+
+## Funcionalidades Implementadas en React Parte 2
+
+* Creacion del componente `ProyectoCard.jsx`
+* Uso de props para enviar informacion entre componentes
+* Desestructuracion de propiedades de proyectos
+* Refactorizacion del renderizado de proyectos
+* Creacion del componente `DetalleProyecto.jsx`
+* Visualizacion de descripcion extendida
+* Visualizacion de recursos:
+
+  * PDF
+  * Drive
+  * GitHub
+  
+* Visualizacion del equipo de trabajo y roles
+* Actualizacion del arreglo de proyectos con nueva informacion
+* Mejora en la organizacion y reutilizacion del codigo
