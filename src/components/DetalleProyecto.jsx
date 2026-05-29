@@ -3,9 +3,8 @@ const DetalleProyecto = ({ proyecto }) => {
     if (!proyecto) {
 
         return (
-            <p>
-                Seleccione un proyecto
-            </p>
+            // <p>Seleccione un Proyecto</p>
+            <p></p>
         );
     }
 
@@ -34,19 +33,19 @@ const DetalleProyecto = ({ proyecto }) => {
                 <li>
                     PDF:
                     {' '}
-                    {proyecto.recursos.pdf}
+                    {proyecto.recursos?.pdf}
                 </li>
 
                 <li>
                     Drive:
                     {' '}
-                    {proyecto.recursos.drive}
+                    {proyecto.recursos?.drive}
                 </li>
 
                 <li>
                     GitHub:
                     {' '}
-                    {proyecto.recursos.github}
+                    {proyecto.recursos?.github}
                 </li>
 
             </ul>
@@ -58,7 +57,7 @@ const DetalleProyecto = ({ proyecto }) => {
             <ul>
 
                 {
-                    proyecto.equipo.map((persona, index) => (
+                    proyecto.equipo?.map((persona, index) => (
 
                         <li key={index}>
 
