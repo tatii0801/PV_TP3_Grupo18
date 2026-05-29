@@ -1,0 +1,144 @@
+/* Crea variables para no tener que repetirlas a lo largo del proyecto xd*/
+:root {
+  --color-principal: #2c3e50;
+  --color-secundario: #3498db;
+  --color-fondo: #f3e8e8;
+  --color-blanco: #ffffff;
+  --color-texto: #333;
+}
+
+/* Resetea todo para poder trabajarlo */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--color-fondo);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: var(--color-texto);
+}
+
+.contenedor {
+  width: 100%;
+  max-width: autopx;
+  margin: auto;
+  padding: 20px;
+}
+
+header {
+  background-color: var(--color-principal);
+  color: var(--color-blanco);
+}
+
+.header-contenido {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#header-h2{
+  color: white;
+  display: flex;
+  padding: 20px;
+}
+
+nav a {
+  color: white;
+  margin-left: 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: var(--color-secundario);
+}
+
+section {
+  margin: 20px 0;
+}
+
+/* Lo usé tanto para las tarjetas, como para los proyectos */
+.contenedor-proyectos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+/* solo en el index*/
+.card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+/* solo enproyectos  */
+.proyecto {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.categoria {
+  font-weight: bold;
+}
+
+.filtros {
+  margin: 20px 0;
+  padding: 5px;
+}
+
+/* distintos usos */
+.centrado {
+  padding: 10px;
+  text-align: center;
+}
+
+.margen {
+  padding: 20px;
+}
+
+
+button {
+    padding: 5px 10px;
+    background-color: rgb(229, 245, 245);
+    color:rgb(0, 0, 0);
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 20px;
+    border: lightseagreen;
+    font-size: 20px;
+}
+
+footer {
+  text-align: center;
+  padding: 15px;
+  background-color: var(--color-principal);
+  color: white;
+  display: flex;
+  flex-direction: column;
+
+  margin: 0;
+ 
+}
+
+select {
+
+  padding: 10px;
+
+  margin: 5px;
+
+  border-radius: 5px;
+
+  border: 1px solid var(--color-borde);
+}
+
+select:focus {
+
+  outline: none;
+
+  border-color: var(--color-secundario);
+}

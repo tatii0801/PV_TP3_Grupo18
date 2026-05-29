@@ -1,16 +1,131 @@
-# React + Vite
+# PV_TP3_Grupo18
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Trabajo Practico N° 3 - React Parte 1 y Parte 2
 
-Currently, two official plugins are available:
+### React - Componentes - Hooks - Props - Servicios
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Integrantes con sus usuarios de GitHub
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* Agustin Pablo Portillo DNI: 38976086 LU: APU006548 Usuario GitHub: PortilloAgustin95
 
-## Expanding the ESLint configuration
+* Moises Antonio Israel Flores Navajas DNI: 38973565 LU: 5307 Usuario GitHub: MoisesFloresNavajas
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* Tatiana Valeria Nieva DNI: 43139597 LU: 3866 Usuario GitHub: tatii0801
+
+* Yesarela Febe Manuelita Flores Navajas DNI: 41041662 LU: 6000 Usuario GitHub: YesarelaFloresNavajas
+
+---
+
+## Estructura del Proyecto
+
+* `src/components/`
+  Contiene los componentes reutilizables de React:
+
+  * Header.jsx
+  * Nav.jsx
+  * Footer.jsx
+  * ListaProyectos.jsx
+  * ProyectoCard.jsx
+  * DetalleProyecto.jsx
+
+* `src/services/`
+  Contiene la logica del proyecto:
+
+  * proyectoService.js
+
+* `src/css/`
+  Contiene los archivos de estilos CSS del proyecto.
+
+* `src/App.jsx`
+  Componente principal de la aplicacion.
+
+* `src/main.jsx`
+  Punto de entrada principal de React.
+
+---
+
+## Tecnologias Utilizadas
+
+* React
+* Vite
+* JavaScript
+* JSX
+* CSS
+* Node.js
+* npm
+* Git
+* GitHub
+
+---
+
+## Comandos Utilizados
+
+Crear proyecto con Vite:
+
+* npm create vite@latest
+
+Instalar dependencias:
+
+* npm install
+
+Ejecutar proyecto:
+
+* npm run dev
+
+---
+
+## Objetivo del Trabajo
+
+Aplicar conceptos fundamentales de React mediante el desarrollo de una aplicacion web interactiva utilizando componentes, props, hooks y modulos de JavaScript, siguiendo buenas practicas de organizacion, reutilizacion y separacion de responsabilidades.
+
+---
+
+## Descripcion
+
+En este trabajo practico se realizo la migracion de una plataforma web desarrollada previamente en HTML y CSS hacia React utilizando Vite.
+
+El proyecto consiste en una aplicacion de Gestion de Proyectos Educativos, aplicando conceptos fundamentales de React como:
+
+* Componentes funcionales
+* JSX
+* Props
+* Hooks (`useState`)
+* Modularizacion
+* Manipulacion dinamica de datos
+* Renderizado de listas con `.map()`
+* Eventos en React
+* Importacion y exportacion de modulos
+* Desestructuracion de objetos
+* Separacion de logica y vista
+
+La aplicacion permite:
+
+* Visualizar proyectos
+* Buscar proyectos en tiempo real
+* Agregar proyectos
+* Eliminar proyectos
+* Ver detalles de cada proyecto
+* Mostrar informacion extendida
+* Gestionar informacion mediante un modulo de servicios
+
+---
+
+## Funcionalidades Implementadas en React Parte 2
+
+* Creacion del componente `ProyectoCard.jsx`
+* Uso de props para enviar informacion entre componentes
+* Desestructuracion de propiedades de proyectos
+* Refactorizacion del renderizado de proyectos
+* Creacion del componente `DetalleProyecto.jsx`
+* Visualizacion de descripcion extendida
+* Visualizacion de recursos:
+
+  * PDF
+  * Drive
+  * GitHub
+  
+* Visualizacion del equipo de trabajo y roles
+* Actualizacion del arreglo de proyectos con nueva informacion
+* Mejora en la organizacion y reutilizacion del codigo
