@@ -12,7 +12,7 @@ const proyectos = [
         descripcion:
             `Sistema diseñado para administrar libros, préstamos y usuarios dentro de una institución educativa. Permite registrar, organizar y consultar el catálogo bibliográfico de manera eficiente, facilitando el acceso a la información y el control de los recursos disponibles.
 
-Además, gestiona los préstamos y devoluciones de libros, manteniendo un seguimiento actualizado de los usuarios y sus movimientos. Esto contribuye a optimizar la administración de la biblioteca, mejorar el servicio a la comunidad educativa y garantizar un control adecuado del material bibliográfico.`,
+            Además, gestiona los préstamos y devoluciones de libros, manteniendo un seguimiento actualizado de los usuarios y sus movimientos. Esto contribuye a optimizar la administración de la biblioteca, mejorar el servicio a la comunidad educativa y garantizar un control adecuado del material bibliográfico.`,
 
         recursos: {
 
@@ -160,7 +160,7 @@ Además, gestiona los préstamos y devoluciones de libros, manteniendo un seguim
         descripcion:
             `Plataforma virtual diseñada para compartir contenidos educativos, facilitando el acceso a materiales de estudio, recursos didácticos y documentos relevantes para el proceso de aprendizaje. Su entorno digital permite una interacción más dinámica entre estudiantes y docentes.
 
-Además, incorpora herramientas para la gestión de actividades y el seguimiento académico, permitiendo monitorear el progreso de los estudiantes, registrar evaluaciones y mantener una comunicación constante. De esta manera, contribuye a fortalecer la enseñanza y mejorar la organización de las actividades educativas.`,
+            Además, incorpora herramientas para la gestión de actividades y el seguimiento académico, permitiendo monitorear el progreso de los estudiantes, registrar evaluaciones y mantener una comunicación constante. De esta manera, contribuye a fortalecer la enseñanza y mejorar la organización de las actividades educativas.`,
 
         recursos: {
 
