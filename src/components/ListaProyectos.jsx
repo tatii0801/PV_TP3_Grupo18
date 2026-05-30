@@ -47,6 +47,7 @@ const ListaProyectos = () => {
 
     // Procesamos el string del equipo para generar el array de objetos { nombre, rol }
     const arrayEquipo = equipoRaw
+    
       .split("\n")
       .filter((linea) => linea.includes("-"))
       .map((linea) => {
@@ -121,6 +122,24 @@ const ListaProyectos = () => {
         <input type="text" placeholder="Buscar proyecto" onChange={buscar} />
       </div>
 
+
+      <section className="contenedor-proyectos">
+        {proyectos.map((proyecto) => (
+          <ProyectoCard
+            key={proyecto.id}
+            proyecto={proyecto}
+            onEliminar={eliminar}
+            onVerDetalle={verDetalle}
+          />
+        ))}
+      </section>
+
+
+      <hr />
+
+      <DetalleProyecto proyecto={proyectoSeleccionado} />
+
+      
       <hr />
 
       <section className="margen">
@@ -204,21 +223,6 @@ const ListaProyectos = () => {
           <button onClick={agregar}>Agregar Proyecto</button>
         </div>
       </section>
-
-      <hr />
-
-      <section className="contenedor-proyectos">
-        {proyectos.map((proyecto) => (
-          <ProyectoCard
-            key={proyecto.id}
-            proyecto={proyecto}
-            onEliminar={eliminar}
-            onVerDetalle={verDetalle}
-          />
-        ))}
-      </section>
-
-      <DetalleProyecto proyecto={proyectoSeleccionado} />
     </main>
   );
 };
