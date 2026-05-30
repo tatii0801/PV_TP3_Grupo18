@@ -12,15 +12,29 @@ const ListaProyectos = () => {
   const [proyectos, setProyectos] = useState(obtenerProyectos());
   const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null);
 
-  const [titulo, setTitulo] = useState("");
-  const [categoria, setCategoria] = useState("");
-  const [estado, setEstado] = useState("");
+  // 1. ESTADO UNIFICADO DEL FORMULARIO (Cumple la consigna de desestructuración)
+  const [form, setForm] = useState({
+    titulo: "",
+    categoria: "",
+    estado: "",
+    descripcionRaw: "",
+    pdf: "",
+    drive: "",
+    github: "",
+    equipoRaw: "",
+  });
 
-  const [descripcionRaw, setDescripcionRaw] = useState("");
-  const [pdf, setPdf] = useState("");
-  const [drive, setDrive] = useState("");
-  const [github, setGithub] = useState("");
-  const [equipoRaw, setEquipoRaw] = useState("");
+  // 2. DESESTRUCTURACIÓN DE LOS CAMPOS PARA EL USO EN EL RENDER
+  const { titulo, categoria, estado, descripcionRaw, pdf, drive, github, equipoRaw } = form;
+
+  // 3. MANEJADOR DE EVENTOS GENÉRICO (Desestructura name y value de e.target)
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({
+      ...form,
+      [name]: value,
+    });
+  };
 
   const agregar = () => {
     if (!titulo || !descripcionRaw) {
@@ -28,26 +42,30 @@ const ListaProyectos = () => {
       return;
     }
 
-    const parrafosDescripcion = descripcionRaw
-      .split("\n")
-      .filter((p) => p.trim() !== "");
+    // Convertimos el contenido a string plano tal como lo lee el Detalle del compañero
+    const descripcionTextoPlano = descripcionRaw.trim();
 
+    // Procesamos el string del equipo para generar el array de objetos { nombre, rol }
     const arrayEquipo = equipoRaw
       .split("\n")
       .filter((linea) => linea.includes("-"))
       .map((linea) => {
         const [nombre, rol] = linea.split("-");
-        return { nombre: nombre.trim(), rol: rol.trim() };
+        return { 
+          nombre: nombre.trim(), 
+          rol: rol.trim() 
+        };
       });
 
     const nuevoId = proyectos.length > 0 ? proyectos[proyectos.length - 1].id + 1 : 1;
 
+    // Objeto final adaptado exactamente a las keys de DetalleProyecto
     const nuevoProyecto = {
       id: nuevoId,
-      titulo: titulo,
-      categoria: categoria,
-      estado: estado,
-      descripcionExtendida: parrafosDescripcion, 
+      titulo,
+      categoria,
+      estado,
+      descripcion: descripcionTextoPlano, // Cambiado para emparejar con el detalle ajeno
       recursos: {
         pdf: pdf.trim(),
         drive: drive.trim(),
@@ -59,14 +77,17 @@ const ListaProyectos = () => {
     agregarProyecto(nuevoProyecto);
     setProyectos(obtenerProyectos());
 
-    setTitulo("");
-    setCategoria("");
-    setEstado("");
-    setDescripcionRaw("");
-    setPdf("");
-    setDrive("");
-    setGithub("");
-    setEquipoRaw("");
+    // Reseteo limpio del estado unificado
+    setForm({
+      titulo: "",
+      categoria: "",
+      estado: "",
+      descripcionRaw: "",
+      pdf: "",
+      drive: "",
+      github: "",
+      equipoRaw: "",
+    });
   };
 
   const eliminar = (id) => {
@@ -108,21 +129,24 @@ const ListaProyectos = () => {
         <div className="formulario-proyecto" style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '500px' }}>
           <input
             type="text"
+            name="titulo"
             placeholder="Título del Proyecto"
             value={titulo}
-            onChange={(encontrar) => setTitulo(encontrar.target.value)}
+            onChange={handleChange}
           />
 
           <input
             type="text"
+            name="categoria"
             placeholder="Categoría"
             value={categoria}
-            onChange={(encontrar) => setCategoria(encontrar.target.value)}
+            onChange={handleChange}
           />
 
           <select
+            name="estado"
             value={estado}
-            onChange={(encontrar) => setEstado(encontrar.target.value)}
+            onChange={handleChange}
           >
             <option value="">Seleccione un estado</option>
             <option value="Pendiente">Pendiente</option>
@@ -130,44 +154,51 @@ const ListaProyectos = () => {
             <option value="Finalizado">Finalizado</option>
           </select>
 
-          {/* NUEVOS INPUTS EN EL FORMULARIO */}
+          {/* INPUT PARA DESCRIPCIÓN */}
           <textarea
             rows="4"
-            placeholder="Descripción extendida (Mínimo 2 párrafos, separalos pulsando Enter)"
+            name="descripcionRaw"
+            placeholder="Descripción extendida del proyecto"
             value={descripcionRaw}
-            onChange={(e) => setDescripcionRaw(e.target.value)}
+            onChange={handleChange}
           />
 
+          {/* INPUTS PARA RECURSOS */}
           <div style={{ border: '1px solid #ccc', padding: '10px', borderRadius: '5px' }}>
-            <label style={{ fontSize: '12px', fontWeight: 'bold', display: 'block', marginBottom: '5px' }}>Recursos (URLs):</label>
+            <label style={{ fontSize: '12px', fontWeight: 'bold', display: 'block', marginBottom: '5px' }}>Recursos:</label>
             <input
-              type="url"
-              placeholder="Link PDF (ej: https://...)"
+              type="text"
+              name="pdf"
+              placeholder="Enlace o nombre del PDF"
               value={pdf}
-              onChange={(e) => setPdf(e.target.value)}
+              onChange={handleChange}
               style={{ width: '100%', marginBottom: '5px' }}
             />
             <input
-              type="url"
-              placeholder="Link Google Drive"
+              type="text"
+              name="drive"
+              placeholder="Enlace Google Drive"
               value={drive}
-              onChange={(e) => setDrive(e.target.value)}
+              onChange={handleChange}
               style={{ width: '100%', marginBottom: '5px' }}
             />
             <input
-              type="url"
-              placeholder="Link GitHub"
+              type="text"
+              name="github"
+              placeholder="Enlace GitHub"
               value={github}
-              onChange={(e) => setGithub(e.target.value)}
+              onChange={handleChange}
               style={{ width: '100%' }}
             />
           </div>
 
+          {/* INPUT PARA EQUIPO */}
           <textarea
             rows="3"
-            placeholder="Equipo de trabajo (Un miembro por línea formato: Nombre - Rol)&#10;Ejemplo:&#10;Juan Pérez - Desarrollador Frontend&#10;Lucas Gómez - Tester"
+            name="equipoRaw"
+            placeholder="Equipo de trabajo (Formato: Nombre - Rol. Uno por línea)&#10;Ej: Juan Pérez - Desarrollador"
             value={equipoRaw}
-            onChange={(e) => setEquipoRaw(e.target.value)}
+            onChange={handleChange}
           />
 
           <button onClick={agregar}>Agregar Proyecto</button>
