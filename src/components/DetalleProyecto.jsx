@@ -20,9 +20,9 @@ const DetalleProyecto = ({ proyecto }) => {
                 {proyecto.descripcion}
             </p>
 
-            <p>
+            {/* <p>
                 Este proyecto busca mejorar la organizacion y gestion educativa utilizando herramientas tecnologicas modernas.
-            </p>
+            </p> */}
 
             <h3>
                 Recursos
