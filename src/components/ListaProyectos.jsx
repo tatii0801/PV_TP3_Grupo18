@@ -25,7 +25,16 @@ const ListaProyectos = () => {
   });
 
   // 2. DESESTRUCTURACIÓN DE LOS CAMPOS PARA EL USO EN EL RENDER
-  const { titulo, categoria, estado, descripcionRaw, pdf, drive, github, equipoRaw } = form;
+  const {
+    titulo,
+    categoria,
+    estado,
+    descripcionRaw,
+    pdf,
+    drive,
+    github,
+    equipoRaw,
+  } = form;
 
   // 3. MANEJADOR DE EVENTOS GENÉRICO (Desestructura name y value de e.target)
   const handleChange = (e) => {
@@ -47,18 +56,19 @@ const ListaProyectos = () => {
 
     // Procesamos el string del equipo para generar el array de objetos { nombre, rol }
     const arrayEquipo = equipoRaw
-    
+
       .split("\n")
       .filter((linea) => linea.includes("-"))
       .map((linea) => {
         const [nombre, rol] = linea.split("-");
-        return { 
-          nombre: nombre.trim(), 
-          rol: rol.trim() 
+        return {
+          nombre: nombre.trim(),
+          rol: rol.trim(),
         };
       });
 
-    const nuevoId = proyectos.length > 0 ? proyectos[proyectos.length - 1].id + 1 : 1;
+    const nuevoId =
+      proyectos.length > 0 ? proyectos[proyectos.length - 1].id + 1 : 1;
 
     // Objeto final adaptado exactamente a las keys de DetalleProyecto
     const nuevoProyecto = {
@@ -98,7 +108,9 @@ const ListaProyectos = () => {
   };
 
   const verDetalle = (proyecto) => {
-    setProyectoSeleccionado(proyecto);
+    setProyectoSeleccionado((prev) =>
+      prev?.id === proyecto.id ? null : proyecto,
+    );
   };
 
   const buscar = (encontrar) => {
@@ -122,7 +134,6 @@ const ListaProyectos = () => {
         <input type="text" placeholder="Buscar proyecto" onChange={buscar} />
       </div>
 
-
       <section className="contenedor-proyectos">
         {proyectos.map((proyecto) => (
           <ProyectoCard
@@ -134,18 +145,24 @@ const ListaProyectos = () => {
         ))}
       </section>
 
-
       <hr />
 
       <DetalleProyecto proyecto={proyectoSeleccionado} />
 
-      
       <hr />
 
       <section className="margen">
         <h3>Agregar Proyecto</h3>
 
-        <div className="formulario-proyecto" style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '500px' }}>
+        <div
+          className="formulario-proyecto"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px",
+            maxWidth: "500px",
+          }}
+        >
           <input
             type="text"
             name="titulo"
@@ -162,11 +179,7 @@ const ListaProyectos = () => {
             onChange={handleChange}
           />
 
-          <select
-            name="estado"
-            value={estado}
-            onChange={handleChange}
-          >
+          <select name="estado" value={estado} onChange={handleChange}>
             <option value="">Seleccione un estado</option>
             <option value="Pendiente">Pendiente</option>
             <option value="En curso">En curso</option>
@@ -183,15 +196,30 @@ const ListaProyectos = () => {
           />
 
           {/* INPUTS PARA RECURSOS */}
-          <div style={{ border: '1px solid #ccc', padding: '10px', borderRadius: '5px' }}>
-            <label style={{ fontSize: '12px', fontWeight: 'bold', display: 'block', marginBottom: '5px' }}>Recursos:</label>
+          <div
+            style={{
+              border: "1px solid #ccc",
+              padding: "10px",
+              borderRadius: "5px",
+            }}
+          >
+            <label
+              style={{
+                fontSize: "12px",
+                fontWeight: "bold",
+                display: "block",
+                marginBottom: "5px",
+              }}
+            >
+              Recursos:
+            </label>
             <input
               type="text"
               name="pdf"
               placeholder="Enlace o nombre del PDF"
               value={pdf}
               onChange={handleChange}
-              style={{ width: '100%', marginBottom: '5px' }}
+              style={{ width: "100%", marginBottom: "5px" }}
             />
             <input
               type="text"
@@ -199,7 +227,7 @@ const ListaProyectos = () => {
               placeholder="Enlace Google Drive"
               value={drive}
               onChange={handleChange}
-              style={{ width: '100%', marginBottom: '5px' }}
+              style={{ width: "100%", marginBottom: "5px" }}
             />
             <input
               type="text"
@@ -207,7 +235,7 @@ const ListaProyectos = () => {
               placeholder="Enlace GitHub"
               value={github}
               onChange={handleChange}
-              style={{ width: '100%' }}
+              style={{ width: "100%" }}
             />
           </div>
 
