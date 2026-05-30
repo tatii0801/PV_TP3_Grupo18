@@ -1,13 +1,6 @@
 const DetalleProyecto = ({ proyecto }) => {
 
-    if (!proyecto) {
-
-        return (
-            // <p>Seleccione un Proyecto</p>
-            <p></p>
-        );
-    }
-
+    if (proyecto) 
     return (
 
         <section className="detalle-proyecto">
