@@ -40,7 +40,7 @@ header {
   justify-content: space-between;
   align-items: center;
 }
-#header-h2{
+#header-h2 {
   color: white;
   display: flex;
   padding: 20px;
@@ -101,16 +101,15 @@ section {
   padding: 20px;
 }
 
-
 button {
-    padding: 5px 10px;
-    background-color: rgb(229, 245, 245);
-    color:rgb(0, 0, 0);
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 20px;
-    border: lightseagreen;
-    font-size: 20px;
+  padding: 5px 10px;
+  background-color: rgb(229, 245, 245);
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 20px;
+  border: lightseagreen;
+  font-size: 20px;
 }
 
 footer {
@@ -122,5 +121,20 @@ footer {
   flex-direction: column;
 
   margin: 0;
- 
+}
+
+select {
+  padding: 10px;
+
+  margin: 5px;
+
+  border-radius: 5px;
+
+  border: 1px solid var(--color-borde);
+}
+
+select:focus {
+  outline: none;
+
+  border-color: var(--color-secundario);
 }
