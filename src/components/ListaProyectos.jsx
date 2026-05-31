@@ -1,7 +1,12 @@
 import { useState } from "react";
 import ProyectoCard from "./ProyectoCard";
 import DetalleProyecto from "./DetalleProyecto";
-import { obtenerProyectos, agregarProyecto, eliminarProyecto, buscarProyecto} from "../services/proyectoService";
+import {
+  obtenerProyectos,
+  agregarProyecto,
+  eliminarProyecto,
+  buscarProyecto,
+} from "../services/proyectoService";
 
 const ListaProyectos = () => {
   const [proyectos, setProyectos] = useState(obtenerProyectos());
@@ -59,7 +64,9 @@ const ListaProyectos = () => {
       });
 
       if (!formatoValido) {
-        alert("Ingrese el equipo con formato: Nombre - Rol");
+        alert(
+          "Formato incorrecto. Debes ingresar el nombre seguido del rol, separados por un guion medio (-). Ejemplo: Nombre - Rol.",
+        );
 
         return;
       }
@@ -147,15 +154,116 @@ const ListaProyectos = () => {
   };
 
   return (
-    <main className="contenedor">
+    <main className="contenedor bg-secondary text-light min-vh-100 p-4">
+      <section>
+        <h2 className="mb-3" id="titulo-proyecto">
+          <strong>Agregar Proyecto</strong>
+        </h2>
+
+        <div
+          className="formulario-proyecto card p-9 mx-auto bg-info-subtle shadow"
+          style={{
+            maxWidth: "500px",
+          }}
+        >
+          <input
+            type="text"
+            name="titulo"
+            placeholder="Título del Proyecto"
+            value={titulo}
+            onChange={handleChange}
+            className="form-control mb-3"
+          />
+          <input
+            type="text"
+            name="categoria"
+            placeholder="Categoría"
+            value={categoria}
+            onChange={handleChange}
+            className="form-control mb-3"
+          />
+          <select
+            name="estado"
+            value={estado}
+            onChange={handleChange}
+            className="form-select mb-3"
+          >
+            <option value="">Seleccione un estado</option>
+            <option value="Pendiente">Pendiente</option>
+            <option value="En curso">En curso</option>
+            <option value="Finalizado">Finalizado</option>
+          </select>
+          {/* INPUT PARA DESCRIPCIÓN */}
+          <textarea
+            rows="4"
+            name="descripcionRaw"
+            placeholder="Descripción extendida del proyecto"
+            value={descripcionRaw}
+            onChange={handleChange}
+            className="form-control mb-3"
+          />
+          {/* INPUTS PARA RECURSOS */}
+          <div className="border rounded p-3 mb-3">
+            <label className="form-label fw-bold">Recursos:</label>
+
+            <input
+              type="text"
+              name="pdf"
+              placeholder="Enlace o nombre del PDF"
+              value={pdf}
+              onChange={handleChange}
+              className="form-control mb-2"
+            />
+
+            <input
+              type="text"
+              name="drive"
+              placeholder="Enlace Google Drive"
+              value={drive}
+              onChange={handleChange}
+              className="form-control mb-2"
+            />
+
+            <input
+              type="text"
+              name="github"
+              placeholder="Enlace GitHub"
+              value={github}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+          {/* INPUT PARA EQUIPO */}
+          <textarea
+            rows="3"
+            name="equipoRaw"
+            placeholder="Equipo de trabajo (Formato: Nombre - Rol. Uno por línea)&#10;Ej: Juan Pérez - Desarrollador"
+            value={equipoRaw}
+            onChange={handleChange}
+            className="form-control mb-3"
+          />
+          <button onClick={agregar} className="btn btn-success">
+            Agregar Proyecto
+          </button>
+        </div>
+      </section>
+
+      <hr />
+      <hr />
+
       <div className="centrado">
         <h2 id="titulo-proyecto">
           <strong>Lista de Proyectos</strong>
         </h2>
       </div>
 
-      <div className="margen">
-        <input type="text" placeholder="Buscar proyecto" onChange={buscar} />
+      <div className="margen" className="mb-3 w-50">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Buscar proyecto"
+          onChange={buscar}
+        />
       </div>
 
       <section className="contenedor-proyectos">
@@ -170,111 +278,9 @@ const ListaProyectos = () => {
       </section>
 
       <hr />
-
-      <DetalleProyecto proyecto={proyectoSeleccionado} />
-
       <hr />
 
-      <section className="margen">
-        <h3>Agregar Proyecto</h3>
-
-        <div
-          className="formulario-proyecto"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "10px",
-            maxWidth: "500px",
-          }}
-        >
-          <input
-            type="text"
-            name="titulo"
-            placeholder="Título del Proyecto"
-            value={titulo}
-            onChange={handleChange}
-          />
-
-          <input
-            type="text"
-            name="categoria"
-            placeholder="Categoría"
-            value={categoria}
-            onChange={handleChange}
-          />
-
-          <select name="estado" value={estado} onChange={handleChange}>
-            <option value="">Seleccione un estado</option>
-            <option value="Pendiente">Pendiente</option>
-            <option value="En curso">En curso</option>
-            <option value="Finalizado">Finalizado</option>
-          </select>
-
-          {/* INPUT PARA DESCRIPCIÓN */}
-          <textarea
-            rows="4"
-            name="descripcionRaw"
-            placeholder="Descripción extendida del proyecto"
-            value={descripcionRaw}
-            onChange={handleChange}
-          />
-
-          {/* INPUTS PARA RECURSOS */}
-          <div
-            style={{
-              border: "1px solid #ccc",
-              padding: "10px",
-              borderRadius: "5px",
-            }}
-          >
-            <label
-              style={{
-                fontSize: "12px",
-                fontWeight: "bold",
-                display: "block",
-                marginBottom: "5px",
-              }}
-            >
-              Recursos:
-            </label>
-            <input
-              type="text"
-              name="pdf"
-              placeholder="Enlace o nombre del PDF"
-              value={pdf}
-              onChange={handleChange}
-              style={{ width: "100%", marginBottom: "5px" }}
-            />
-            <input
-              type="text"
-              name="drive"
-              placeholder="Enlace Google Drive"
-              value={drive}
-              onChange={handleChange}
-              style={{ width: "100%", marginBottom: "5px" }}
-            />
-            <input
-              type="text"
-              name="github"
-              placeholder="Enlace GitHub"
-              value={github}
-              onChange={handleChange}
-              style={{ width: "100%" }}
-            />
-          </div>
-
-          {/* INPUT PARA EQUIPO */}
-          <textarea
-            rows="3"
-            name="equipoRaw"
-            placeholder="Equipo de trabajo (Formato: Nombre - Rol. Uno por línea)&#10;Ej: Juan Pérez - Desarrollador"
-            value={equipoRaw}
-            onChange={handleChange}
-          />
-
-          <button onClick={agregar}>Agregar Proyecto</button>
-        </div>
-      </section>
+      <DetalleProyecto proyecto={proyectoSeleccionado} />
     </main>
   );
 };
