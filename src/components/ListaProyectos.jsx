@@ -1,12 +1,7 @@
 import { useState } from "react";
 import ProyectoCard from "./ProyectoCard";
 import DetalleProyecto from "./DetalleProyecto";
-import {
-  obtenerProyectos,
-  agregarProyecto,
-  eliminarProyecto,
-  buscarProyecto,
-} from "../services/proyectoService";
+import { obtenerProyectos, agregarProyecto, eliminarProyecto, buscarProyecto} from "../services/proyectoService";
 
 const ListaProyectos = () => {
   const [proyectos, setProyectos] = useState(obtenerProyectos());
@@ -51,6 +46,25 @@ const ListaProyectos = () => {
       return;
     }
 
+    // Verificamos que cada integrante tenga formato Nombre - Rol
+    if (equipoRaw.trim() !== "") {
+      const formatoValido = equipoRaw.split("\n").every((linea) => {
+        const partes = linea.split("-");
+
+        return (
+          partes.length === 2 &&
+          partes[0].trim() !== "" &&
+          partes[1].trim() !== ""
+        );
+      });
+
+      if (!formatoValido) {
+        alert("Ingrese el equipo con formato: Nombre - Rol");
+
+        return;
+      }
+    }
+
     // Convertimos el contenido a string plano tal como lo lee el Detalle del compañero
     const descripcionTextoPlano = descripcionRaw.trim();
 
@@ -61,6 +75,7 @@ const ListaProyectos = () => {
       .filter((linea) => linea.includes("-"))
       .map((linea) => {
         const [nombre, rol] = linea.split("-");
+
         return {
           nombre: nombre.trim(),
           rol: rol.trim(),
@@ -73,19 +88,28 @@ const ListaProyectos = () => {
     // Objeto final adaptado exactamente a las keys de DetalleProyecto
     const nuevoProyecto = {
       id: nuevoId,
+
       titulo,
+
       categoria,
+
       estado,
-      descripcion: descripcionTextoPlano, // Cambiado para emparejar con el detalle ajeno
+
+      descripcion: descripcionTextoPlano,
+
       recursos: {
         pdf: pdf.trim(),
+
         drive: drive.trim(),
+
         github: github.trim(),
       },
+
       equipo: arrayEquipo,
     };
 
     agregarProyecto(nuevoProyecto);
+
     setProyectos(obtenerProyectos());
 
     // Reseteo limpio del estado unificado
