@@ -8,13 +8,15 @@
 
 ## Integrantes con sus usuarios de GitHub
 
-* Agustin Pablo Portillo DNI: 38976086 LU: APU006548 Usuario GitHub: PortilloAgustin95
+Agustin Pablo Portillo DNI: 38976086 LU: APU006548 Usuario git: PortilloAgustin95
 
-* Moises Antonio Israel Flores Navajas DNI: 38973565 LU: 5307 Usuario GitHub: MoisesFloresNavajas
+Josías Daniel Rodríguez DNI: 42748497 LU: 6682 Usuario git: 42748497
 
-* Tatiana Valeria Nieva DNI: 43139597 LU: 3866 Usuario GitHub: tatii0801
+Moisés Antonio Israel Flores Navajas DNI: 38973565 LU: 5307 Usuario git: MoisesFloresNavajas
 
-* Yesarela Febe Manuelita Flores Navajas DNI: 41041662 LU: 6000 Usuario GitHub: YesarelaFloresNavajas
+Tatiana Valeria Nieva DNI: 43139597 LU: 3866 Usuario git: tatii0801
+
+Yesarela Febe Manuelita Flores Navajas DNI: 41041662 Lu: 6000 Usuario git: YesarelaFloresNavajas
 
 ---
 
