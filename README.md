@@ -1,6 +1,6 @@
 # PV_TP3_Grupo18
 
-## Trabajo Practico N° 3 - React Parte 1 y Parte 2
+## Trabajo Practico N° 3 - React Parte 1, Parte 2 y Parte 3
 
 ### React - Componentes - Hooks - Props - Servicios
 
@@ -8,53 +8,56 @@
 
 ## Integrantes con sus usuarios de GitHub
 
-Agustin Pablo Portillo DNI: 38976086 LU: APU006548 Usuario git: PortilloAgustin95
+Agustin Pablo Portillo DNI: 38976086 LU: APU006548 Usuario GitHub: PortilloAgustin95
 
-Josías Daniel Rodríguez DNI: 42748497 LU: 6682 Usuario git: 42748497
+Moisés Antonio Israel Flores Navajas DNI: 38973565 LU: 5307 Usuario GitHub: MoisesFloresNavajas
 
-Moisés Antonio Israel Flores Navajas DNI: 38973565 LU: 5307 Usuario git: MoisesFloresNavajas
+Tatiana Valeria Nieva DNI: 43139597 LU: 3866 Usuario GitHub: tatii0801
 
-Tatiana Valeria Nieva DNI: 43139597 LU: 3866 Usuario git: tatii0801
-
-Yesarela Febe Manuelita Flores Navajas DNI: 41041662 Lu: 6000 Usuario git: YesarelaFloresNavajas
+Yesarela Febe Manuelita Flores Navajas DNI: 41041662 LU: 6000 Usuario GitHub: YesarelaFloresNavajas
 
 ---
 
 ## Estructura del Proyecto
 
-* `src/components/`
-  Contiene los componentes reutilizables de React:
+### src/components/
 
-  * Header.jsx
-  * Nav.jsx
-  * Footer.jsx
-  * ListaProyectos.jsx
-  * ProyectoCard.jsx
-  * DetalleProyecto.jsx
+Contiene los componentes reutilizables de React:
 
-* `src/services/`
-  Contiene la logica del proyecto:
+* Header.jsx
+* Nav.jsx
+* Footer.jsx
+* ListaProyectos.jsx
+* ProyectoCard.jsx
+* DetalleProyecto.jsx
+* RegistroActividad.jsx
+* FormularioProyecto.jsx
 
-  * proyectoService.js
+### src/services/
 
-* `src/css/`
-  Contiene los archivos de estilos CSS del proyecto.
+Contiene la lógica del proyecto:
 
-* `src/App.jsx`
-  Componente principal de la aplicacion.
+* proyectoService.js
 
-* `src/main.jsx`
-  Punto de entrada principal de React.
+### src/css/
+
+Contiene los archivos de estilos CSS del proyecto.
+
+### Archivos principales
+
+* App.jsx
+* main.jsx
 
 ---
 
-## Tecnologias Utilizadas
+## Tecnologías Utilizadas
 
 * React
 * Vite
 * JavaScript
 * JSX
 * CSS
+* Bootstrap
 * Node.js
 * npm
 * Git
@@ -62,17 +65,25 @@ Yesarela Febe Manuelita Flores Navajas DNI: 41041662 Lu: 6000 Usuario git: Yesar
 
 ---
 
+## Hooks Utilizados
+
+* useState
+* useEffect
+* useRef
+
+---
+
 ## Comandos Utilizados
 
-Crear proyecto con Vite:
+### Crear proyecto con Vite
 
 * npm create vite@latest
 
-Instalar dependencias:
+### Instalar dependencias
 
 * npm install
 
-Ejecutar proyecto:
+### Ejecutar proyecto
 
 * npm run dev
 
@@ -80,54 +91,106 @@ Ejecutar proyecto:
 
 ## Objetivo del Trabajo
 
-Aplicar conceptos fundamentales de React mediante el desarrollo de una aplicacion web interactiva utilizando componentes, props, hooks y modulos de JavaScript, siguiendo buenas practicas de organizacion, reutilizacion y separacion de responsabilidades.
+Aplicar conceptos fundamentales de React mediante el desarrollo de una aplicación web interactiva utilizando componentes, props, hooks y módulos de JavaScript, siguiendo buenas prácticas de organización, reutilización y separación de responsabilidades.
 
 ---
 
-## Descripcion
+## Descripción
 
-En este trabajo practico se realizo la migracion de una plataforma web desarrollada previamente en HTML y CSS hacia React utilizando Vite.
+En este trabajo práctico se realizó la migración de una plataforma web desarrollada previamente en HTML y CSS hacia React utilizando Vite.
 
-El proyecto consiste en una aplicacion de Gestion de Proyectos Educativos, aplicando conceptos fundamentales de React como:
+El proyecto consiste en una aplicación de Gestión de Proyectos Educativos, aplicando conceptos fundamentales de React como:
 
 * Componentes funcionales
 * JSX
 * Props
-* Hooks (`useState`)
-* Modularizacion
-* Manipulacion dinamica de datos
-* Renderizado de listas con `.map()`
+* Hooks
+* Modularización
+* Manipulación dinámica de datos
+* Renderizado de listas con .map()
 * Eventos en React
-* Importacion y exportacion de modulos
-* Desestructuracion de objetos
-* Separacion de logica y vista
+* Importación y exportación de módulos
+* Desestructuración de objetos
+* Separación de lógica y vista
 
-La aplicacion permite:
+La aplicación permite:
 
 * Visualizar proyectos
 * Buscar proyectos en tiempo real
 * Agregar proyectos
 * Eliminar proyectos
 * Ver detalles de cada proyecto
-* Mostrar informacion extendida
-* Gestionar informacion mediante un modulo de servicios
+* Mostrar información extendida
+* Gestionar información mediante un módulo de servicios
 
 ---
 
 ## Funcionalidades Implementadas en React Parte 2
 
-* Creacion del componente `ProyectoCard.jsx`
-* Uso de props para enviar informacion entre componentes
-* Desestructuracion de propiedades de proyectos
-* Refactorizacion del renderizado de proyectos
-* Creacion del componente `DetalleProyecto.jsx`
-* Visualizacion de descripcion extendida
-* Visualizacion de recursos:
+* Creación del componente ProyectoCard.jsx
+* Uso de props para enviar información entre componentes
+* Desestructuración de propiedades de proyectos
+* Refactorización del renderizado de proyectos
+* Creación del componente DetalleProyecto.jsx
+* Visualización de descripción extendida
+* Visualización de recursos:
 
   * PDF
   * Drive
   * GitHub
-  
-* Visualizacion del equipo de trabajo y roles
-* Actualizacion del arreglo de proyectos con nueva informacion
-* Mejora en la organizacion y reutilizacion del codigo
+* Visualización del equipo de trabajo y roles
+* Actualización del arreglo de proyectos con nueva información
+* Mejora en la organización y reutilización del código
+
+---
+
+## Funcionalidades Implementadas en React Parte 3
+
+### Registro de Actividad
+
+* Creación del componente RegistroActividad.jsx.
+* Visualización de la fecha y hora de la última modificación realizada sobre la lista de proyectos.
+* Integración del componente al final de ListaProyectos.jsx.
+
+### Uso del Hook useEffect
+
+* Implementación de useEffect para detectar cambios en el estado de proyectos.
+* Actualización automática de la fecha y hora cada vez que se agrega o elimina un proyecto.
+* Captura de la fecha actual mediante el objeto Date de JavaScript.
+
+### Formato Dinámico de Fecha y Hora
+
+Se implementó el siguiente formato solicitado por la consigna:
+
+Última actualización de la lista: DD/MM/AAAA a las HH:MM hs.
+
+### Optimización con useRef
+
+* Implementación de useRef para evitar la ejecución inicial del useEffect.
+* El componente RegistroActividad no se muestra al cargar la página por primera vez.
+* La información aparece únicamente luego de agregar o eliminar proyectos.
+
+### Aislamiento del Filtro de Búsqueda
+
+* El filtro de búsqueda quedó aislado del registro de actividad.
+* Buscar proyectos no modifica la fecha y hora de la última actualización.
+* El registro solo cambia cuando ocurre una modificación real en la lista.
+
+### Componentización del Formulario
+
+* Creación del componente FormularioProyecto.jsx.
+* Migración del estado local del formulario al nuevo componente.
+* Migración de la función handleChange al componente hijo.
+* Implementación de elevación de estado mediante callback.
+* Envío del nuevo proyecto desde el componente hijo al componente padre.
+* Mantenimiento del funcionamiento de alta de proyectos.
+
+---
+
+## Conclusión
+
+Durante el desarrollo del Trabajo Práctico N° 3 se aplicaron conceptos fundamentales de React relacionados con componentes, props, hooks, servicios y manejo de estados.
+
+Además, se incorporaron hooks avanzados como useEffect y useRef para controlar efectos secundarios y optimizar el comportamiento de la aplicación.
+
+La aplicación final permite gestionar proyectos educativos mediante una interfaz dinámica, organizada y reutilizable, siguiendo buenas prácticas de desarrollo y componentización.
