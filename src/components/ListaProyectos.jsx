@@ -85,7 +85,7 @@ const ListaProyectos = () => {
   return (
     <main className="contenedor bg-secondary text-light min-vh-100 p-4">
    
-      
+           <FormularioProyecto onAgregar={agregar} />
 
       <hr />
       <hr />
@@ -120,10 +120,6 @@ const ListaProyectos = () => {
       <hr />
 
       <DetalleProyecto proyecto={proyectoSeleccionado} />
-         <FormularioProyecto
-        onAgregarProyecto={agregar}
-      />
-
 
       <RegistroActividad
         fechaHora={ultimaActualizacion}

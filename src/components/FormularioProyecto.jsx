@@ -41,24 +41,36 @@ const FormularioProyecto = ({ onAgregar }) => {
     }
 
     // Verificamos que cada integrante tenga formato Nombre - Rol
-    if (equipoRaw.trim() !== "") {
-      const formatoValido = equipoRaw.split("\n").every((linea) => {
-        const partes = linea.split("-");
+    // Si el campo está vacío, no permitimos agregar el proyecto
+    if (equipoRaw.trim() === "") {
+      alert("Debe ingresar al menos un integrante del equipo.");
+      return;
+    }
 
-        return (
-          partes.length === 2 &&
-          partes[0].trim() !== "" &&
-          partes[1].trim() !== ""
-        );
-      });
+    // Verificamos que cada línea tenga el formato:
+    // Nombre - Rol
+    const formatoValido = equipoRaw.split("\n").every((linea) => {
+      // Separamos la línea usando el guion "-"
+      const partes = linea.split("-");
 
-      if (!formatoValido) {
-        alert(
-          "Formato incorrecto. Debes ingresar el nombre seguido del rol, separados por un guion medio (-). Ejemplo: Nombre - Rol.",
-        );
+      // Debe haber exactamente dos partes:
+      // una para el nombre y otra para el rol
+      return (
+        partes.length === 2 &&
+        // El nombre no puede estar vacío
+        partes[0].trim() !== "" &&
+        // El rol tampoco puede estar vacío
+        partes[1].trim() !== ""
+      );
+    });
 
-        return;
-      }
+    // Si alguna línea no cumple el formato,
+    // mostramos un mensaje y cancelamos el alta
+    if (!formatoValido) {
+      alert(
+        "Formato incorrecto. Debes ingresar el nombre seguido del rol. Ejemplo: Juan Pérez - Desarrollador.",
+      );
+      return;
     }
 
     // Convertimos el contenido a string plano tal como lo lee el Detalle del compañero
@@ -85,7 +97,7 @@ const FormularioProyecto = ({ onAgregar }) => {
     const nuevoProyecto = {
       //   id: nuevoId,
 
-      id: Date.now(),
+      //     id: Date.now(),
 
       titulo,
       categoria,
@@ -134,7 +146,6 @@ const FormularioProyecto = ({ onAgregar }) => {
           maxWidth: "500px",
         }}
       >
-        
         <input
           type="text"
           name="titulo"
@@ -143,7 +154,7 @@ const FormularioProyecto = ({ onAgregar }) => {
           onChange={handleChange}
           className="form-control mb-3"
         />
-        
+
         <input
           type="text"
           name="categoria"
@@ -152,7 +163,7 @@ const FormularioProyecto = ({ onAgregar }) => {
           onChange={handleChange}
           className="form-control mb-3"
         />
-        
+
         <select
           name="estado"
           value={estado}
@@ -164,7 +175,7 @@ const FormularioProyecto = ({ onAgregar }) => {
           <option value="En curso">En curso</option>
           <option value="Finalizado">Finalizado</option>
         </select>
-        
+
         {/* INPUT PARA DESCRIPCIÓN */}
         <textarea
           rows="4"
@@ -174,7 +185,7 @@ const FormularioProyecto = ({ onAgregar }) => {
           onChange={handleChange}
           className="form-control mb-3"
         />
-        
+
         {/* INPUTS PARA RECURSOS */}
         <div className="border rounded p-3 mb-3">
           <label className="form-label fw-bold">Recursos:</label>
@@ -206,7 +217,7 @@ const FormularioProyecto = ({ onAgregar }) => {
             className="form-control"
           />
         </div>
-        
+
         {/* INPUT PARA EQUIPO */}
         <textarea
           rows="3"
@@ -220,7 +231,6 @@ const FormularioProyecto = ({ onAgregar }) => {
         <button onClick={agregar} className="btn btn-success">
           Agregar Proyecto
         </button>
-      
       </div>
     </section>
   );
