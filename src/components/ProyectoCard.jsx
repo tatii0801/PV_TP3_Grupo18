@@ -1,48 +1,41 @@
-const ProyectoCard = ({ proyecto, onEliminar, onVerDetalle }) => {
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 
-  const {
-    id,
-    titulo,
-    categoria,
-    estado
-  } = proyecto;
+const ProyectoCard = ({ proyecto, onEliminar, onVerDetalle }) => {
+  const { id, titulo, categoria, estado } = proyecto;
 
   return (
+    <Card
+      className="shadow-sm mb-3 border-0"
+      style={{
+        backgroundColor: "#F5F0E6",
+        borderTop: "8px solid red",
+      }}
+    >
+      <Card.Body>
+        <Card.Title>{titulo}</Card.Title>
 
-    <article className="proyecto card shadow-sm">
-
-      <div className="card-body">
-
-        <h3 className="card-title">
-          {titulo}
-        </h3>
-
-        <p className="card-text">
+        <Card.Text>
           <strong>Categoría:</strong> {categoria}
-        </p>
+        </Card.Text>
 
-        <p className="card-text">
+        <Card.Text>
           <strong>Estado:</strong> {estado}
-        </p>
+        </Card.Text>
 
-        <button
-          className="btn btn-danger me-2"
+        <Button
+          variant="danger"
+          className="me-2"
           onClick={() => onEliminar(id)}
         >
           Eliminar
-        </button>
+        </Button>
 
-        <button
-          className="btn btn-primary"
-          onClick={() => onVerDetalle(proyecto)}
-        >
+        <Button variant="primary" onClick={() => onVerDetalle(proyecto)}>
           Ver detalle
-        </button>
-
-      </div>
-
-    </article>
-
+        </Button>
+      </Card.Body>
+    </Card>
   );
 };
 

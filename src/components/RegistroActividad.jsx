@@ -1,5 +1,4 @@
 const RegistroActividad = ({ fechaHora }) => {
-
   if (!fechaHora) return null;
 
   const fecha = new Date(fechaHora);
@@ -12,11 +11,15 @@ const RegistroActividad = ({ fechaHora }) => {
   const minutos = String(fecha.getMinutes()).padStart(2, "0");
 
   return (
-    <section className="card shadow-sm mt-4 p-3">
-      <h4>Registro de Actividad</h4>
+    <section
+      className="card shadow-sm mt-4 p-3"
+      style={{ backgroundColor: "#E9ECEF" }}
+    >
+      <h3>Registro de Actividad</h3>
 
       <p>
-        Última actualización de la lista: {dia}/{mes}/{anio} a las {horas}:{minutos} hs.
+        Última actualización de la lista: {dia}/{mes}/{anio} a las {horas}:
+        {minutos} hs.
       </p>
     </section>
   );
