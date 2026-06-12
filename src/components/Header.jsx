@@ -10,7 +10,6 @@ const Header = () => {
             <strong>Proyectos</strong>
           </h2>
         </div>
-
         <Menu />
       </div>
     </header>

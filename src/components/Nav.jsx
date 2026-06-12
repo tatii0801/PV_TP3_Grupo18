@@ -20,7 +20,7 @@ const Menu = () => {
       </Nav.Item>
 
       <Nav.Item>
-        <Nav.Link href="ListaProyectos"> Agregar y Listar Proyectos</Nav.Link>
+        <Nav.Link href="#"> Agregar y Listar Proyectos</Nav.Link>
       </Nav.Item>
     </Nav>
   );

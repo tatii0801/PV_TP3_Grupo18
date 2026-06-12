@@ -170,22 +170,34 @@ const proyectos = [
   },
 ];
 
+//const [mensaje, setMensaje] = useState("");
+
 export const obtenerProyectos = () => [...proyectos];
+
+// Busca el proyecto usando el id recibido desde la URL
+export const obtenerProyectoPorId = (id) => {
+  return proyectos.find((proyecto) => proyecto.id === Number(id));
+};
 
 export const agregarProyecto = (nuevoProyecto) => {
   if (
     nuevoProyecto.titulo === "" ||
     nuevoProyecto.categoria === "" ||
-    nuevoProyecto.estado === ""
+    nuevoProyecto.estado === "" ||
+    nuevoProyecto.descripcion === "" ||
+    nuevoProyecto.recursos.pdf === "" ||
+    nuevoProyecto.recursos.drive === "" ||
+    nuevoProyecto.recursos.github === "" ||
+    nuevoProyecto.equipo.length === 0
   ) {
-    alert("Complete todos los campos");
-
-    return;
+    return false;
   }
 
   console.log(`Se agrego el proyecto ${nuevoProyecto.titulo}`);
 
   proyectos.push(nuevoProyecto);
+
+  return true;
 };
 
 export const eliminarProyecto = (id) => {

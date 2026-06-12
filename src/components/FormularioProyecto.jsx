@@ -44,8 +44,9 @@ const FormularioProyecto = ({ onAgregar }) => {
   };
 
   const agregar = () => {
-    if (!titulo || !categoria || !estado || !descripcionRaw) {
+    if (!titulo || !categoria || !estado || !descripcionRaw || !equipoRaw || !pdf || !drive || !github) {
       setMensaje(
+        "Complete todos los campos",
         "Por favor, completa al menos el título, catergoria, estado y la descripción.",
       );
       return;
@@ -153,7 +154,7 @@ const FormularioProyecto = ({ onAgregar }) => {
       >*/
   return (
     <section>
-      <h2 className="mb-3" id="titulo-proyecto">
+      <h2 className="mb-4" id="titulo-proyecto">
         <strong>Agregar Proyecto</strong>
       </h2>
 
@@ -168,7 +169,7 @@ const FormularioProyecto = ({ onAgregar }) => {
         style={{
           maxWidth: "600px",
           borderRadius: "15px",
-          backgroundColor: "#5ea58a", // verde suave
+          backgroundColor: "#639682", // verde suave
         }}
       >
         <Card.Body>
