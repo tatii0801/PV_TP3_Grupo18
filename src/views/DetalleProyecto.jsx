@@ -1,9 +1,10 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 // Obtiene el id desde la URL y carga el proyecto correspondiente
 import { obtenerProyectoPorId } from "../services/proyectoService";
 
 const DetalleProyecto = () => {
+  const navigate = useNavigate();
 
   // Captura el id desde:
   // /proyectos/1
@@ -18,13 +19,22 @@ const DetalleProyecto = () => {
 
   return (
     <section className="detalle-proyecto">
+      <button
+        onClick={() => navigate("/proyectos")}
+        style={{
+          marginBottom: "20px",
+        }}
+      >
+        ← Volver a Proyectos
+      </button>
+
       <h2>{proyecto.titulo}</h2>
 
       <p>{proyecto.descripcion}</p>
 
       {/* <p>
-                Este proyecto busca mejorar la organizacion y gestion educativa utilizando herramientas tecnologicas modernas.
-            </p> */}
+        Este proyecto busca mejorar la organización y gestión educativa utilizando herramientas tecnológicas modernas.
+      </p> */}
 
       <h3>Recursos</h3>
 
