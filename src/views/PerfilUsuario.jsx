@@ -1,3 +1,4 @@
+import React from 'react';
 import { 
   Container, 
   Box, 
@@ -15,7 +16,6 @@ import BadgeIcon from '@mui/icons-material/Badge';
 import SchoolIcon from '@mui/icons-material/School';
 
 const PerfilUsuario = () => {
-  // Datos simulados del alumno requeridos por la consigna
   const usuarioSimulado = {
     nombre: "Juan Pérez",
     rol: "Alumno (Analista Programador Universitario)",
@@ -24,10 +24,8 @@ const PerfilUsuario = () => {
 
   return (
     <Container maxWidth="sm" sx={{ mt: 4, mb: 4 }}>
-      {/* Componente contenedor Paper solicitado por la rúbrica */}
       <Paper elevation={3} sx={{ p: 4, borderRadius: 2, textAlign: 'center' }}>
         
-        {/* Encabezado con Inicial Automatizada */}
         <Box display="flex" flexDirection="column" alignItems="center" mb={3}>
           <Avatar sx={{ bgcolor: 'primary.main', width: 72, height: 72, mb: 2, fontSize: '2rem' }}>
             {usuarioSimulado.nombre.charAt(0)}
@@ -42,9 +40,7 @@ const PerfilUsuario = () => {
 
         <Divider sx={{ mb: 2 }} />
 
-        {/* Lista de Datos usando componentes de Material UI */}
         <List>
-          {/* Nombre */}
           <ListItem>
             <ListItemIcon><PersonIcon color="primary" /></ListItemIcon>
             <ListItemText 
@@ -56,7 +52,6 @@ const PerfilUsuario = () => {
           
           <Divider variant="inset" component="li" />
 
-          {/* Rol */}
           <ListItem>
             <ListItemIcon><BadgeIcon color="primary" /></ListItemIcon>
             <ListItemText 
@@ -68,7 +63,6 @@ const PerfilUsuario = () => {
 
           <Divider variant="inset" component="li" />
 
-          {/* Institución */}
           <ListItem>
             <ListItemIcon><SchoolIcon color="primary" /></ListItemIcon>
             <ListItemText 
