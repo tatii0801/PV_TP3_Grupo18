@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import ProyectoCard from "./ProyectoCard";
-import DetalleProyecto from "./DetalleProyecto";
-import RegistroActividad from "./RegistroActividad";
-import FormularioProyecto from "./FormularioProyecto";
+import ProyectoCard from "../components/ProyectoCard";
+import RegistroActividad from "../components/RegistroActividad";
+import FormularioProyecto from "../components/FormularioProyecto";
 
 // El sistema de rejilla (Grid/Containers/Rows) para la distribución general de la página
 import Container from "react-bootstrap/Container";
@@ -61,10 +60,6 @@ const ListaProyectos = () => {
 
     setProyectos(nuevaLista);
     setProyectosFiltrados(nuevaLista);
-
-    if (proyectoSeleccionado?.id === id) {
-      setProyectoSeleccionado(null);
-    }
   };
 
   /*const verDetalle = (proyecto) => {
