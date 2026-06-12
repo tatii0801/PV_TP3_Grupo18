@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
@@ -8,7 +10,7 @@ const ProyectoCard = ({ proyecto, onEliminar, onVerDetalle }) => {
     <Card
       className="shadow-sm mb-3 border-0"
       style={{
-        backgroundColor: "#F5F0E6",
+        backgroundColor: "#ebe7d7",
         borderTop: "8px solid red",
       }}
     >
@@ -31,7 +33,12 @@ const ProyectoCard = ({ proyecto, onEliminar, onVerDetalle }) => {
           Eliminar
         </Button>
 
-        <Button variant="primary" onClick={() => onVerDetalle(proyecto)}>
+        {/* <Button variant="primary" onClick={() => onVerDetalle(proyecto)}>
+          Ver detalle
+        </Button>*/}
+
+        {/* Navega al detalle usando rutas dinámicas*/}
+        <Button variant="primary" as={Link} to={`/proyectos/${id}`}>
           Ver detalle
         </Button>
       </Card.Body>

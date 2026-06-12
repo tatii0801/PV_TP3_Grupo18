@@ -22,7 +22,7 @@ const ListaProyectos = () => {
   const [proyectosFiltrados, setProyectosFiltrados] =
     useState(obtenerProyectos());
 
-  const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null);
+  //const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null);
 
   const [ultimaActualizacion, setUltimaActualizacion] = useState(null);
 
@@ -67,14 +67,14 @@ const ListaProyectos = () => {
     }
   };
 
-  const verDetalle = (proyecto) => {
+  /*const verDetalle = (proyecto) => {
     setProyectoSeleccionado((prev) =>
       prev?.id === proyecto.id ? null : proyecto,
     );
-  };
+  };*/
 
-  const buscar = (e) => {
-    const texto = e.target.value;
+  const buscar = (encontrar) => {
+    const texto = encontrar.target.value;
 
     if (texto === "") {
       setProyectosFiltrados(proyectos);
@@ -91,10 +91,10 @@ const ListaProyectos = () => {
         padding: "20px",
       }}
     >
-      <Container className="mt-4">
+      <Container className="contenedor">
         <FormularioProyecto onAgregar={agregar} />
 
-        <hr />
+       
         <hr />
 
         <div className="centrado">
@@ -119,7 +119,7 @@ const ListaProyectos = () => {
                 key={proyecto.id}
                 proyecto={proyecto}
                 onEliminar={eliminar}
-                onVerDetalle={verDetalle}
+                //onVerDetalle={verDetalle}
               />
               <hr />
             </Col>
@@ -129,7 +129,7 @@ const ListaProyectos = () => {
         <hr />
         <hr />
 
-        <DetalleProyecto proyecto={proyectoSeleccionado} />
+        {/*<DetalleProyecto proyecto={proyectoSeleccionado} />*/}
 
         <RegistroActividad fechaHora={ultimaActualizacion} />
       </Container>
