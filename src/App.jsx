@@ -3,8 +3,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-import ListaProyectos from "./components/ListaProyectos";
-import DetalleProyecto from "./components/DetalleProyecto";
+import Dashboard from "./views/Dashboard";
+import ListaProyectos from "./views/ListaProyectos";
+import DetalleProyecto from "./views/DetalleProyecto";
+import PerfilUsuario from "./views/PerfilUsuario";
 
 function App() {
   return (
@@ -12,11 +14,16 @@ function App() {
       <Header />
 
       <Routes>
-        {/* Página principal */}
-        <Route path="/" element={<ListaProyectos />} />
+        {/* Dashboard */}
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
 
-        {/* Detalle */}
+        {/* Proyectos */}
+        <Route path="/proyectos" element={<ListaProyectos />} />
         <Route path="/proyectos/:id" element={<DetalleProyecto />} />
+
+        {/* Perfil */}
+        <Route path="/perfil" element={<PerfilUsuario />} />
       </Routes>
 
       <Footer />
