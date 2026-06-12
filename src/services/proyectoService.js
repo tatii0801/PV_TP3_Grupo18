@@ -1,4 +1,5 @@
-const proyectos = [
+// DATOS INICIALES (solo se usan la primera vez)
+const proyectosIniciales = [
   {
     id: 1,
 
@@ -23,12 +24,12 @@ const proyectos = [
     equipo: [
       {
         nombre: "Pablo",
-        rol: "Frontend",
+        rol: "Backend",
       },
 
       {
         nombre: "Tatiana",
-        rol: "Backend",
+        rol: "Frontend",
       },
     ],
   },
@@ -172,6 +173,23 @@ const proyectos = [
 
 //const [mensaje, setMensaje] = useState("");
 
+// SI EXISTEN PROYECTOS GUARDADOS LOS USA
+// SI NO EXISTEN USA LOS INICIALES
+let proyectos;
+
+try {
+  proyectos =
+    JSON.parse(localStorage.getItem("proyectos")) || proyectosIniciales;
+} catch {
+  proyectos = proyectosIniciales;
+}
+
+// GUARDA EN LOCAL STORAGE
+const guardar = () => {
+  localStorage.setItem("proyectos", JSON.stringify(proyectos));
+};
+
+// OBTENER TODOS
 export const obtenerProyectos = () => [...proyectos];
 
 // Busca el proyecto usando el id recibido desde la URL
@@ -179,6 +197,7 @@ export const obtenerProyectoPorId = (id) => {
   return proyectos.find((proyecto) => proyecto.id === Number(id));
 };
 
+// AGREGAR
 export const agregarProyecto = (nuevoProyecto) => {
   if (
     nuevoProyecto.titulo === "" ||
@@ -193,9 +212,12 @@ export const agregarProyecto = (nuevoProyecto) => {
     return false;
   }
 
-  console.log(`Se agrego el proyecto ${nuevoProyecto.titulo}`);
-
   proyectos.push(nuevoProyecto);
+
+  // GUARDA CAMBIOS
+  guardar();
+
+  console.log(`Se agregó el proyecto ${nuevoProyecto.titulo}`);
 
   return true;
 };
@@ -203,12 +225,14 @@ export const agregarProyecto = (nuevoProyecto) => {
 export const eliminarProyecto = (id) => {
   console.log(`Se eliminara el proyecto con id ${id}`);
 
-  proyectos.splice(
-    proyectos.findIndex((proyecto) => proyecto.id === id),
-    1,
-  );
+  // Elimina el proyecto
+  proyectos = proyectos.filter((proyecto) => proyecto.id !== id);
+
+  // Guarda cambios en localStorage
+  guardar();
 };
 
+// BUSCAR
 export const buscarProyecto = (texto) => {
   return proyectos.filter((proyecto) =>
     proyecto.titulo.toLowerCase().includes(texto.toLowerCase()),
