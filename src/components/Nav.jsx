@@ -1,12 +1,28 @@
-const Nav = () => {
+import Nav from "react-bootstrap/Nav";
+import { NavLink } from "react-router-dom";
+
+const Menu = () => {
   return (
-    <nav className="contenedor margen">
-      <a href="#">Inicio</a>
-      <a href="#">Proyectos</a>
-      <a href="#">Perfil</a>
-      <a href="#">Detalles</a>
-    </nav>
+    <Nav className="ms-auto" variant="tabs">
+      <Nav.Item>
+        <Nav.Link as={NavLink} to="/">
+          Inicio
+        </Nav.Link>
+      </Nav.Item>
+
+      <Nav.Item>
+        <Nav.Link as={NavLink} to="/proyectos">
+          Proyectos
+        </Nav.Link>
+      </Nav.Item>
+
+      <Nav.Item>
+        <Nav.Link as={NavLink} to="/perfil">
+          Perfil
+        </Nav.Link>
+      </Nav.Item>
+    </Nav>
   );
 };
 
-export default Nav;
+export default Menu;

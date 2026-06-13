@@ -1,5 +1,6 @@
-const RegistroActividad = ({ fechaHora }) => {
+import Alert from "react-bootstrap/Alert";
 
+const RegistroActividad = ({ fechaHora }) => {
   if (!fechaHora) return null;
 
   const fecha = new Date(fechaHora);
@@ -12,13 +13,14 @@ const RegistroActividad = ({ fechaHora }) => {
   const minutos = String(fecha.getMinutes()).padStart(2, "0");
 
   return (
-    <section className="card shadow-sm mt-4 p-3">
-      <h4>Registro de Actividad</h4>
+    <Alert variant="info" className="mt-4">
+      <Alert.Heading>Registro de Actividad</Alert.Heading>
 
-      <p>
-        Última actualización de la lista: {dia}/{mes}/{anio} a las {horas}:{minutos} hs.
+      <p className="mb-0">
+        Última actualización de la lista: {dia}/{mes}/{anio} a las {horas}:
+        {minutos} hs.
       </p>
-    </section>
+    </Alert>
   );
 };
 
