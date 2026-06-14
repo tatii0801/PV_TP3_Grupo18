@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import { UsuarioProvider } from "./context/UsuarioContext";
+
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -10,24 +12,28 @@ import PerfilUsuario from "./views/PerfilUsuario";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Header />
+    <UsuarioProvider>
+      <BrowserRouter>
+        <Header />
 
-      <Routes>
-        {/* Dashboard */}
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Routes>
+          {/* Dashboard */}
+          <Route path="/" element={<Dashboard />} />
 
-        {/* Proyectos */}
-        <Route path="/proyectos" element={<ListaProyectos />} />
-        <Route path="/proyectos/:id" element={<DetalleProyecto />} />
+          <Route path="/dashboard" element={<Dashboard />} />
 
-        {/* Perfil */}
-        <Route path="/perfil" element={<PerfilUsuario />} />
-      </Routes>
+          {/* Proyectos */}
+          <Route path="/proyectos" element={<ListaProyectos />} />
 
-      <Footer />
-    </BrowserRouter>
+          <Route path="/proyectos/:id" element={<DetalleProyecto />} />
+
+          {/* Perfil */}
+          <Route path="/perfil" element={<PerfilUsuario />} />
+        </Routes>
+
+        <Footer />
+      </BrowserRouter>
+    </UsuarioProvider>
   );
 }
 
