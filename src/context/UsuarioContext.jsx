@@ -7,17 +7,24 @@ export const UsuarioContext = createContext();
 export const UsuarioProvider = ({ children }) => {
 
   // Usuario compartido globalmente
-  const [usuario] = useState({
-
+  const [usuario, setUsuario] = useState({
     nombre: "Carlos Rodriguez",
-   // dni: "44567890",
+    // dni: "44567890",
     rol: "Docente",
     institucion: "Facultad de Ingeniería",
-  
-});
+  });
+
+  const actualizarPerfil = (nuevoPerfil) => {
+    setUsuario(nuevoPerfil);
+  };
 
   return (
-    <UsuarioContext.Provider value={{ usuario }}>
+    <UsuarioContext.Provider
+      value={{
+        usuario,
+        actualizarPerfil,
+      }}
+    >
       {children}
     </UsuarioContext.Provider>
   );
