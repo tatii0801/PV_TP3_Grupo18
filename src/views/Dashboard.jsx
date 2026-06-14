@@ -32,6 +32,7 @@ const Dashboard = () => {
           </Card>
         </Col>
       </Row>
+      <hr />
     </Container>
   );
 };
