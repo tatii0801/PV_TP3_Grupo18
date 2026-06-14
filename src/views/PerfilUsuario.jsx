@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
-import ListGroup from "react-bootstrap/ListGroup";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -12,49 +13,127 @@ import { UsuarioContext } from "../context/UsuarioContext";
 
 const PerfilUsuario = () => {
   // Obtiene los datos desde el contexto global
-  const { usuario } = useContext(UsuarioContext);
+  const { usuario, actualizarPerfil } = useContext(UsuarioContext);
+
+  const [editando, setEditando] = useState(false);
+
+  const [formulario, setFormulario] = useState({
+    nombre: usuario?.nombre || "",
+    dni: usuario?.dni || "",
+    rol: usuario?.rol || "Alumno",
+    institucion: usuario?.institucion || "",
+  });
+
+  const handleChange = (encontrar) => {
+    const { name, value } = encontrar.target;
+
+    setFormulario({
+      ...formulario,
+      [name]: value,
+    });
+  };
+
+  const guardar = () => {
+    actualizarPerfil(formulario);
+
+    setEditando(false);
+  };
+
+  useEffect(() => {
+  if (usuario) {
+    setFormulario({
+      nombre: usuario.nombre || "",
+      dni: usuario.dni || "",
+      rol: usuario.rol || "Alumno",
+      institucion: usuario.institucion || "",
+    });
+  }
+}, [usuario]);
 
   return (
     <Container className="mt-4">
-      <Row className="justify-content-center">
-        <Col md={8}>
-          <Card className="shadow border-0">
-            <Card.Title className="text-center fs-4 fw-bold">
-              Perfil de Usuario
-            </Card.Title>
+      <Card
+        className="shadow border-0"
+        style={{
+          maxWidth: "700px",
+          margin: "auto",
+        }}
+      >
+        <Card.Header
+          className="text-white"
+          style={{
+            backgroundColor: "#639682",
+          }}
+        >
+          Perfil Usuario
+        </Card.Header>
 
-            <Card.Body>
-              <ListGroup variant="flush">
-                <ListGroup.Item>
-                  <strong>Nombre:</strong>
+        <Card.Body>
+          <Form>
+            <Form.Group className="mb-3">
+              <Form.Label>Nombre</Form.Label>
 
-                  <div className="mt-1">{usuario.nombre}</div>
-                </ListGroup.Item>
+              <Form.Control
+                name="nombre"
+                value={formulario.nombre}
+                disabled={!editando}
+                onChange={handleChange}
+              />
+            </Form.Group>
 
-                <ListGroup.Item>
-                  <strong>DNI:</strong>
+            {/* <Form.Group className="mb-3">
 
-                  <div className="mt-1">{usuario.dni}</div>
-                </ListGroup.Item>
+              <Form.Label>
+                DNI
+              </Form.Label>
 
-                <ListGroup.Item>
-                  <strong>Rol:</strong>
+              <Form.Control
+                name="dni"
+                value={formulario.dni}
+                disabled={!editando}
+                onChange={handleChange}
+              />
 
-                  <div className="mt-1">
-                    <Badge bg="primary">{usuario.rol}</Badge>
-                  </div>
-                </ListGroup.Item>
+            </Form.Group>*/}
 
-                <ListGroup.Item>
-                  <strong>Institución:</strong>
+            <Form.Group className="mb-3">
+              <Form.Label>Rol</Form.Label>
 
-                  <div className="mt-1">{usuario.institucion}</div>
-                </ListGroup.Item>
-              </ListGroup>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+              <Form.Select
+                name="rol"
+                value={formulario.rol}
+                disabled={!editando}
+                onChange={handleChange}
+              >
+                <option>Docente</option>
+
+                <option>Alumno</option>
+              </Form.Select>
+            </Form.Group>
+
+            <Form.Group className="mb-4">
+              <Form.Label>Institución</Form.Label>
+
+              <Form.Control
+                name="institucion"
+                value={formulario.institucion}
+                disabled={!editando}
+                onChange={handleChange}
+              />
+            </Form.Group>
+          </Form>
+
+          {!editando ? (
+            <Button variant="warning" onClick={() => setEditando(true)}>
+              Editar Perfil
+            </Button>
+          ) : (
+            <Button variant="info" onClick={guardar}>
+              Guardar Cambios
+            </Button>
+          )}
+        </Card.Body>
+      </Card>
       <hr />
     </Container>
   );
