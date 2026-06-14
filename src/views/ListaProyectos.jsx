@@ -38,7 +38,7 @@ const ListaProyectos = () => {
 
   const agregar = (nuevoProyecto) => {
     const nuevoId =
-      proyectos.length > 0 ? proyectos[proyectos.length - 1].id + 1 : 1;
+      proyectos.length > 0 ? Math.max(...proyectos.map((p) => p.id)) + 1 : 1;
 
     const proyectoCompleto = {
       ...nuevoProyecto,
@@ -50,6 +50,7 @@ const ListaProyectos = () => {
     const listaActualizada = obtenerProyectos();
 
     setProyectos(listaActualizada);
+
     setProyectosFiltrados(listaActualizada);
   };
 
@@ -89,7 +90,6 @@ const ListaProyectos = () => {
       <Container className="contenedor">
         <FormularioProyecto onAgregar={agregar} />
 
-       
         <hr />
 
         <div className="centrado">
@@ -111,7 +111,7 @@ const ListaProyectos = () => {
           {proyectosFiltrados.map((proyecto) => (
             <Col md={4} key={proyecto.id}>
               <ProyectoCard
-                key={proyecto.id}
+                //key={proyecto.id}
                 proyecto={proyecto}
                 onEliminar={eliminar}
                 //onVerDetalle={verDetalle}
