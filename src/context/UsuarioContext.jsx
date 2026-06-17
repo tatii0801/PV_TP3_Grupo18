@@ -4,23 +4,26 @@ export const UsuarioContext = createContext();
 
 export const UsuarioProvider = ({ children }) => {
 
+const [usuario, setUsuario] = useState(() => {
+  const usuarioGuardado = localStorage.getItem("usuario");
 
-  const [usuario, setUsuario] = useState(() => {
-    const usuarioGuardado = localStorage.getItem("usuario");
+  const usuarioPorDefecto = {
+    nombre: "Carlos Rodriguez",
+    dni: "44567890",
+    rol: "Docente",
+    institucion: "Facultad de Ingeniería",
+  };
 
-    if (usuarioGuardado) {
-      return JSON.parse(usuarioGuardado);
-    }
-
+  if (usuarioGuardado) {
     return {
-      nombre: "Carlos Rodriguez",
- 
-      rol: "Docente",
-      institucion: "Facultad de Ingeniería",
+      ...usuarioPorDefecto,
+      ...JSON.parse(usuarioGuardado),
     };
-  });
+  }
 
- 
+  return usuarioPorDefecto;
+});
+
   useEffect(() => {
     localStorage.setItem("usuario", JSON.stringify(usuario));
   }, [usuario]);
