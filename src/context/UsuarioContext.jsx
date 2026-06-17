@@ -1,18 +1,29 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
-// Crear contexto
 export const UsuarioContext = createContext();
 
-//React usa children para representar todo lo que está dentro de una etiqueta
 export const UsuarioProvider = ({ children }) => {
 
-  // Usuario compartido globalmente
-  const [usuario, setUsuario] = useState({
-    nombre: "Carlos Rodriguez",
-    // dni: "44567890",
-    rol: "Docente",
-    institucion: "Facultad de Ingeniería",
+
+  const [usuario, setUsuario] = useState(() => {
+    const usuarioGuardado = localStorage.getItem("usuario");
+
+    if (usuarioGuardado) {
+      return JSON.parse(usuarioGuardado);
+    }
+
+    return {
+      nombre: "Carlos Rodriguez",
+ 
+      rol: "Docente",
+      institucion: "Facultad de Ingeniería",
+    };
   });
+
+ 
+  useEffect(() => {
+    localStorage.setItem("usuario", JSON.stringify(usuario));
+  }, [usuario]);
 
   const actualizarPerfil = (nuevoPerfil) => {
     setUsuario(nuevoPerfil);
