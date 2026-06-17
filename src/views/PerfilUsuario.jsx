@@ -12,7 +12,6 @@ import Badge from "react-bootstrap/Badge";
 import { UsuarioContext } from "../context/UsuarioContext";
 
 const PerfilUsuario = () => {
-  // Obtiene los datos desde el contexto global
   const { usuario, actualizarPerfil } = useContext(UsuarioContext);
 
   const [editando, setEditando] = useState(false);
@@ -40,15 +39,15 @@ const PerfilUsuario = () => {
   };
 
   useEffect(() => {
-  if (usuario) {
-    setFormulario({
-      nombre: usuario.nombre || "",
-      dni: usuario.dni || "",
-      rol: usuario.rol || "Alumno",
-      institucion: usuario.institucion || "",
-    });
-  }
-}, [usuario]);
+    if (usuario) {
+      setFormulario({
+        nombre: usuario.nombre || "",
+        dni: usuario.dni || "",
+        rol: usuario.rol || "Alumno",
+        institucion: usuario.institucion || "",
+      });
+    }
+  }, [usuario]);
 
   return (
     <Container className="mt-4">
@@ -81,11 +80,8 @@ const PerfilUsuario = () => {
               />
             </Form.Group>
 
-            {/* <Form.Group className="mb-3">
-
-              <Form.Label>
-                DNI
-              </Form.Label>
+            <Form.Group className="mb-3">
+              <Form.Label>DNI</Form.Label>
 
               <Form.Control
                 name="dni"
@@ -93,8 +89,7 @@ const PerfilUsuario = () => {
                 disabled={!editando}
                 onChange={handleChange}
               />
-
-            </Form.Group>*/}
+            </Form.Group>
 
             <Form.Group className="mb-3">
               <Form.Label>Rol</Form.Label>
