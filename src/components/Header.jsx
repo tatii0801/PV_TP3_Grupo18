@@ -41,11 +41,12 @@ const Header = () => {
           marginRight: "20px",
         }}
       >
-        <strong>{usuario.nombre}</strong>
+        {/* EVITAR ERROR SI usuario NO EXISTE */}
+        <strong>{usuario?.nombre}</strong>
 
         <br />
 
-        <small>{usuario.rol}</small>
+        <small>{usuario?.rol}</small>
       </div>
 
       <Menu />

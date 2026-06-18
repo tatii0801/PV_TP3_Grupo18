@@ -9,10 +9,14 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Badge from "react-bootstrap/Badge";
 
+import Alert from "react-bootstrap/Alert";
+
 import { UsuarioContext } from "../context/UsuarioContext";
 
 const PerfilUsuario = () => {
   const { usuario, actualizarPerfil } = useContext(UsuarioContext);
+
+  const [mensaje, setMensaje] = useState("");
 
   const [editando, setEditando] = useState(false);
 
@@ -26,14 +30,25 @@ const PerfilUsuario = () => {
   const handleChange = (encontrar) => {
     const { name, value } = encontrar.target;
 
-    setFormulario({
-      ...formulario,
+    setFormulario((prev) => ({
+      ...prev,
       [name]: value,
-    });
+    }));
   };
 
   const guardar = () => {
+    if (
+      !formulario.nombre.trim() ||
+      !formulario.dni.trim() ||
+      !formulario.institucion.trim()
+    ) {
+      setMensaje("Complete todos los campos");
+      return;
+    }
+
     actualizarPerfil(formulario);
+
+    setMensaje("");
 
     setEditando(false);
   };
@@ -68,11 +83,18 @@ const PerfilUsuario = () => {
         </Card.Header>
 
         <Card.Body>
+          {mensaje && (
+            <Alert variant="danger" dismissible onClose={() => setMensaje("")}>
+              {mensaje}
+            </Alert>
+          )}
+
           <Form>
             <Form.Group className="mb-3">
               <Form.Label>Nombre</Form.Label>
 
               <Form.Control
+                type="text"
                 name="nombre"
                 value={formulario.nombre}
                 disabled={!editando}
@@ -84,6 +106,7 @@ const PerfilUsuario = () => {
               <Form.Label>DNI</Form.Label>
 
               <Form.Control
+                type="text"
                 name="dni"
                 value={formulario.dni}
                 disabled={!editando}
@@ -100,9 +123,9 @@ const PerfilUsuario = () => {
                 disabled={!editando}
                 onChange={handleChange}
               >
-                <option>Docente</option>
+                <option value="Docente">Docente</option>
 
-                <option>Alumno</option>
+                <option value="Alumno">Alumno</option>
               </Form.Select>
             </Form.Group>
 
@@ -110,6 +133,7 @@ const PerfilUsuario = () => {
               <Form.Label>Institución</Form.Label>
 
               <Form.Control
+                type="text"
                 name="institucion"
                 value={formulario.institucion}
                 disabled={!editando}
@@ -129,6 +153,7 @@ const PerfilUsuario = () => {
           )}
         </Card.Body>
       </Card>
+
       <hr />
     </Container>
   );
