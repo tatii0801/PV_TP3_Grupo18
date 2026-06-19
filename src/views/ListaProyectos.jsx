@@ -7,6 +7,9 @@ import FormularioProyecto from "../components/FormularioProyecto";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
+import Form from "react-bootstrap/Form";
+import Badge from "react-bootstrap/Badge";
 
 import {
   obtenerProyectos,
@@ -98,30 +101,40 @@ const ListaProyectos = () => {
           </h2>
         </div>
 
-        <div className="mb-3 w-50">
-          <input
+        <div
+          className="mb-4"
+          style={{
+            maxWidth: "600px",
+          }}
+        >
+          <Form.Control
             type="text"
-            className="form-control"
-            placeholder="Buscar proyecto"
+            placeholder="Buscar por título..."
             onChange={buscar}
           />
         </div>
 
-        <Row>
-          {proyectosFiltrados.map((proyecto) => (
-            <Col md={4} key={proyecto.id}>
-              <ProyectoCard
-                //key={proyecto.id}
-                proyecto={proyecto}
-                onEliminar={eliminar}
-                //onVerDetalle={verDetalle}
-              />
-              <hr />
+        <Row className="g-4">
+          {proyectosFiltrados.length > 0 ? (
+            proyectosFiltrados.map((proyecto) => (
+              <Col md={6} lg={4} key={proyecto.id}>
+                <ProyectoCard
+                  //key={proyecto.id}
+                  proyecto={proyecto}
+                  onEliminar={eliminar}
+                  //onVerDetalle={verDetalle}
+                />
+              </Col>
+            ))
+          ) : (
+            <Col>
+              <Card className="shadow p-5 text-center">
+                <h4>No se encontraron proyectos</h4>
+              </Card>
             </Col>
-          ))}
+          )}
         </Row>
-
-        <hr />
+       
         <hr />
 
         {/*<DetalleProyecto proyecto={proyectoSeleccionado} />*/}

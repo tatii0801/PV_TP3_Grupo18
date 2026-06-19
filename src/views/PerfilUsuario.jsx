@@ -21,14 +21,30 @@ const PerfilUsuario = () => {
   const [editando, setEditando] = useState(false);
 
   const [formulario, setFormulario] = useState({
-    nombre: usuario?.nombre || "",
-    dni: usuario?.dni || "",
-    rol: usuario?.rol || "Alumno",
-    institucion: usuario?.institucion || "",
+    nombre: "",
+    dni: "",
+    rol: "",
+    institucion: "",
   });
 
-  const handleChange = (encontrar) => {
-    const { name, value } = encontrar.target;
+  useEffect(() => {
+    if (usuario) {
+      setFormulario({
+        nombre: usuario.nombre || "",
+        dni: usuario.dni || "",
+        rol: usuario.rol || "Alumno",
+        institucion: usuario.institucion || "",
+      });
+    }
+  }, [usuario]);
+
+  const handleChange = (e) => {
+    let { name, value } = e.target;
+
+    // SOLO NUMEROS PARA DNI
+    if (name === "dni") {
+      value = value.replace(/\D/g, "");
+    }
 
     setFormulario((prev) => ({
       ...prev,
@@ -46,6 +62,11 @@ const PerfilUsuario = () => {
       return;
     }
 
+    if (formulario.dni.length < 7) {
+      setMensaje("Ingrese un DNI válido");
+      return;
+    }
+
     actualizarPerfil(formulario);
 
     setMensaje("");
@@ -53,33 +74,35 @@ const PerfilUsuario = () => {
     setEditando(false);
   };
 
-  useEffect(() => {
-    if (usuario) {
-      setFormulario({
-        nombre: usuario.nombre || "",
-        dni: usuario.dni || "",
-        rol: usuario.rol || "Alumno",
-        institucion: usuario.institucion || "",
-      });
-    }
-  }, [usuario]);
-
   return (
-    <Container className="mt-4">
+    <Container>
       <Card
         className="shadow border-0"
         style={{
-          maxWidth: "700px",
+          maxWidth: "750px",
           margin: "auto",
+          borderRadius: "20px",
+          overflow: "hidden",
         }}
       >
         <Card.Header
-          className="text-white"
           style={{
-            backgroundColor: "#639682",
+            background: "linear-gradient(90deg,#639682,#4b7464)",
+            color: "white",
+            padding: "25px",
           }}
         >
-          Perfil Usuario
+          <Row>
+            <Col>
+              <h2>Perfil Usuario</h2>
+            </Col>
+
+            <Col className="text-end">
+              <Badge bg="light" text="dark">
+                {formulario.rol}
+              </Badge>
+            </Col>
+          </Row>
         </Card.Header>
 
         <Card.Body>
@@ -89,68 +112,106 @@ const PerfilUsuario = () => {
             </Alert>
           )}
 
+          <div className="text-center mb-4">
+            <div
+              style={{
+                width: "90px",
+                height: "90px",
+                background: "#639682",
+                borderRadius: "50%",
+                margin: "auto",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "30px",
+                color: "white",
+              }}
+            >
+              👤
+            </div>
+
+            <h4 className="mt-3">{formulario.nombre}</h4>
+
+            <p className="text-muted">{formulario.institucion}</p>
+          </div>
+
           <Form>
-            <Form.Group className="mb-3">
-              <Form.Label>Nombre</Form.Label>
+            <Row>
+              <Col md={6}>
+                <Form.Group className="mb-3">
+                  <Form.Label>Nombre</Form.Label>
 
-              <Form.Control
-                type="text"
-                name="nombre"
-                value={formulario.nombre}
-                disabled={!editando}
-                onChange={handleChange}
-              />
-            </Form.Group>
+                  <Form.Control
+                    type="text"
+                    name="nombre"
+                    value={formulario.nombre}
+                    disabled={!editando}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+              </Col>
 
-            <Form.Group className="mb-3">
-              <Form.Label>DNI</Form.Label>
+              <Col md={6}>
+                <Form.Group className="mb-3">
+                  <Form.Label>DNI</Form.Label>
 
-              <Form.Control
-                type="text"
-                name="dni"
-                value={formulario.dni}
-                disabled={!editando}
-                onChange={handleChange}
-              />
-            </Form.Group>
+                  <Form.Control
+                    type="text"
+                    name="dni"
+                    maxLength={8}
+                    value={formulario.dni}
+                    disabled={!editando}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
 
-            <Form.Group className="mb-3">
-              <Form.Label>Rol</Form.Label>
+            <Row>
+              <Col md={6}>
+                <Form.Group className="mb-3">
+                  <Form.Label>Rol</Form.Label>
 
-              <Form.Select
-                name="rol"
-                value={formulario.rol}
-                disabled={!editando}
-                onChange={handleChange}
-              >
-                <option value="Docente">Docente</option>
+                  <Form.Select
+                    name="rol"
+                    value={formulario.rol}
+                    disabled={!editando}
+                    onChange={handleChange}
+                  >
+                    <option value="Docente">Docente</option>
 
-                <option value="Alumno">Alumno</option>
-              </Form.Select>
-            </Form.Group>
+                    <option value="Alumno">Alumno</option>
+                  </Form.Select>
+                </Form.Group>
+              </Col>
 
-            <Form.Group className="mb-4">
-              <Form.Label>Institución</Form.Label>
+              <Col md={6}>
+                <Form.Group className="mb-4">
+                  <Form.Label>Institución</Form.Label>
 
-              <Form.Control
-                type="text"
-                name="institucion"
-                value={formulario.institucion}
-                disabled={!editando}
-                onChange={handleChange}
-              />
-            </Form.Group>
+                  <Form.Control
+                    type="text"
+                    name="institucion"
+                    value={formulario.institucion}
+                    disabled={!editando}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+
+            <div className="text-end">
+              {!editando ? (
+                <Button variant="warning" onClick={() => setEditando(true)}>
+                  Editar Perfil
+                </Button>
+              ) : (
+                <Button variant="success" onClick={guardar}>
+                  Guardar Cambios
+                </Button>
+              )}
+            </div>
           </Form>
-
-          {!editando ? (
-            <Button variant="warning" onClick={() => setEditando(true)}>
-              Editar Perfil
-            </Button>
-          ) : (
-            <Button variant="info" onClick={guardar}>
-              Guardar Cambios
-            </Button>
-          )}
         </Card.Body>
       </Card>
 

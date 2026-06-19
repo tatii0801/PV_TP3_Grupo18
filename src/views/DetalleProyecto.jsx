@@ -1,5 +1,9 @@
 import { useParams, useNavigate } from "react-router-dom";
 
+import Card from "react-bootstrap/Card";
+import Badge from "react-bootstrap/Badge";
+import Button from "react-bootstrap/Button";
+
 // Obtiene el id desde la URL y carga el proyecto correspondiente
 import { obtenerProyectoPorId } from "../services/proyectoService";
 
@@ -18,7 +22,7 @@ const DetalleProyecto = () => {
   }
 
   return (
-    <section className="detalle-proyecto">
+    <Card className="shadow p-4">
       <button
         onClick={() => navigate("/proyectos")}
         style={{
@@ -28,36 +32,48 @@ const DetalleProyecto = () => {
         ← Volver a Proyectos
       </button>
 
-      <h2>{proyecto.titulo}</h2>
+      <h1>{proyecto.titulo}</h1>
 
+      <Badge bg="primary">{proyecto.estado}</Badge>
+
+      <hr />
+
+      <h4>Descripción</h4>
       <p>{proyecto.descripcion}</p>
 
       {/* <p>
         Este proyecto busca mejorar la organización y gestión educativa utilizando herramientas tecnológicas modernas.
       </p> */}
 
-      <h3>Recursos</h3>
+      <h4>Recursos</h4>
 
       <ul>
-        <li>PDF: {proyecto.recursos?.pdf}</li>
+        <li>
+          PDF:
+          {proyecto.recursos.pdf}
+        </li>
 
-        <li>Drive: {proyecto.recursos?.drive}</li>
+        <li>
+          Drive:
+          {proyecto.recursos.drive}
+        </li>
 
-        <li>GitHub: {proyecto.recursos?.github}</li>
+        <li>
+          GitHub:
+          {proyecto.recursos.github}
+        </li>
       </ul>
 
-      <h3>Equipo</h3>
+      <h4>Equipo</h4>
 
       <ul>
-        {proyecto.equipo?.map((persona, index) => (
+        {proyecto.equipo.map((persona, index) => (
           <li key={index}>
-            {persona.nombre}
-            {" - "}
-            {persona.rol}
+            {persona.nombre}—{persona.rol}
           </li>
         ))}
       </ul>
-    </section>
+    </Card>
   );
 };
 
