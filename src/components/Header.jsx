@@ -1,8 +1,14 @@
+import { useContext } from "react";
+
 import Menu from "./Nav";
 import { useLocation } from "react-router-dom";
 
+import { UsuarioContext } from "../context/UsuarioContext";
 const Header = () => {
   const location = useLocation();
+
+  // Obtiene datos del usuario desde el contexto
+  const { usuario } = useContext(UsuarioContext);
 
   let tituloSeccion = "Proyectos";
 
@@ -26,9 +32,24 @@ const Header = () => {
             <strong>{tituloSeccion}</strong>
           </h2>
         </div>
-
-        <Menu />
       </div>
+
+      {/* Información dinámica */}
+      <div
+        style={{
+          textAlign: "right",
+          marginRight: "20px",
+        }}
+      >
+        {/* EVITAR ERROR SI usuario NO EXISTE */}
+        <strong>{usuario?.nombre}</strong>
+
+        <br />
+
+        <small>{usuario?.rol}</small>
+      </div>
+
+      <Menu />
     </header>
   );
 };
